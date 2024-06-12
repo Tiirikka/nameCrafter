@@ -1,23 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <title>NameCrafter</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Holtwood+One+SC&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Courier+Prime&family=Holtwood+One+SC&display=swap"
+            rel="stylesheet" />
         <link rel="stylesheet" href="css/styles.css" />
         <script src="js/jquery-3.7.1.min.js"></script>
         <script src="plugin/namecrafter-1.0.js"></script>
-        <script src="js/script.js"></script>
+        <script src="js/demo.js"></script>
     </head>
     <body>
         <div id="container">
             <h1>NameCrafter</h1>
-            <p>This generator uses syllables from finnish names to build new names.</p>
-            <div id="mainDiv"></div>
-            <br />
-            <button id="male_names">Generate Names</button>
+            <p>
+                Welcome to the tutorial on how to use the 1.0 version of <b>nameCrafter</b>. Strap in and let see how it all works!
+            </p>
+            <p>Test it out yourself! Have a couple of elf names!</p>
+            <div id="intro_demo"></div>
+            <button id="demo_1">Generate 5 names</button>
+            <h2>Initialize</h2>
+            <div class="row">
+                <code class="column">
+                    <p class="comment">// Basic nameCrafter, no settings</p>
+                    <p>var defaultCrafter = nameCrafter();</p>
+                    <p class="comment">// nameCrafter with changes vowel settings</p>
+                    <p>var optionsCrafter = nameCrafter({vowels : "[aeiouyäö]", maxVowels: 3});</p>
+                    <p class="comment">// nameCrafter with no special settings but debugger on</p>
+                    <p>var debugCrafter = nameCrafter({}, true);</p>
+                </code>
+                <div class="column">
+                    <p>
+                        After including the script, to initialize nameCrafter, simply call for an instance of nameCrafter. This sets up nameCrafter with it's default Library Options.
+                    </p>
+                    <h3>Default options include</h3>
+                    <p>
+                        <b>vowels</b>. This piece of regex determines, which characters nameCrafter considers as vowels to detemine cluster sizes. Defaul value is "[aeiouy]" (string).
+                    </p>
+                    <p>
+                        <b>consonants</b>. This piece of regex determines, which characters nameCrafter considers as consonants to detemine cluster sizes. Defaul value is "[bcdfghjklmnpqrstvwxz]" (string).
+                    </p>
+                    <p>
+                        Do note, you are allowed to set a same character as both vowel and a consonant (like "y" in english, which can be used both as a consonant or vowel sound depending on context). Also technically, nothing prevents you using numbers in your names for example, just do note you need to display them as strings and declare them as either vowels or consonants for code purposes. So yeah, you can generate L33t.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <p>
+                        <b>maxVowels</b>. This number tells the nameCrafter, how many vowels it is allowed to cluster together, default value is 2 (integer). The code checks how many vowels are in the end of lastly randomized syllable, and and if it is higher or the same as the set number, nameCrafter will not attempt to join the cluster with syllables starting with vowels. Otherwise code determines how many vowels would still fit the cluster and only generates the possible syllables that have same amount or fewer vowels on the start of them.  
+                    </p>
+                    <p>
+                        <b>maxConsonants</b>. Works identically to maxVowels, only with consonants. The default value set is 3 (integer).
+                    </p>
+                    <p>Again, disclaimer: inside you syllables you can use as big of vowel or consonant clusters you like, code doesn't police the syllables themselves, only on which syllables can follow that syllable.</p>
+                </div>
+                <code class="column">
+                    <p class="comment">/* Note! when analysing syllables, nameCrafter will look at the end of the syllable to determine which type of syllables can come after it, but checks the front of the middle and suffix syllables to figure can it put it after the last one.</p>
+                    <p class="comment"> This means that syllable "astr" will appear in words, even if maxConsonants would be 2, but as middle or suffix, syllable like "stra" could never appear in the names unless maxConsonants is minimum of 3. As prefix, it could still appear. */</p> 
+                </code>
+            </div>
+            <div class="row">
+                <code class="column">
+                    <p class="comment">// Default, no extra checks </p>
+                    <p>bannedClusters : {}</p>
+                    <p class="comment">// Added examples of limits: if syllable ends in "p", next syllable <u>cannot</u> start with "t" or "r", and if name already has character "a" in it, there cannot be any syllables with "o" after that.</p>
+                    <p>bannedClusters : {"p$" : "^[tr]", "a" : "o" }
+                    </p>
+                </code>
+                <div class="column">
+                    <p>
+                        <b>bannedClusters</b>. As the nameCrafter build a name, starting from a prefix and continuing on to middle and suffix syllables, code will check them for consonant and vowel clusters... but also for anything you put in to the banned cluster object. 
+                    </p>
+                    <p>
+                        All entries to bannedCluster-object go in "key" : "value" - form, were key is a string that code will check against the already chosen parts of a name with regex match and value is one that the code checks the potential next syllables for. If both key matches with the already exsisting part of the name and value with the potential new syllable, code will <u>NOT</u> use that syllable to continue the name. This is important. the bannedClusters takes AWAY options, it doesn't add them.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <p>
+                        <b>replaceables</b>. Just like bannedClusters, replaceables is an object, where "key" is compared to the existing name - but not before the name is already finished. No, replaceables is one of the very last things applied to the name, and it's value is actually another object where key presents character or character cluster one wishes to replace, and value shows what that cluster changes in to. Just like bannedClusters, this object is empty by default.
+                    </p>
+                    <p>
+                        Use both of these options sparingly and responsibly.
+                    </p>
+                    <p>
+                        Last, but not least, we got regex modifiers, <b>matchModifier</b> (default value "gi") and <b>replaceModifier</b> (default value "g"). These modifiers are used in all instances of match and replace functions respectively.
+                    </p>
+                </div>
+                <code class="column">
+                    <p class="comment">// Default, no extra checks </p>
+                    <p>replaceables : {}</p>
+                    <p class="comment">// Couple of example replacements: clusters "sss" is turned in to "ss", and if there is any instance of letters "äöy" in the name, or "a" in the name turn to "ä", "o" to "ö" and "u" to "y"</p>
+                    <p>replaceables : {'sss' : {'sss' : 'ss'}, '[äöy]' : { 'a' : 'ä', 'o' : 'ö', 'u' : 'y', 'A' : 'Ä', 'O' : 'Ö', 'U' : 'Y' } }</p>
+                </code>
+            </div>
+            <h2>setToLibrary function</h2>
+            <div class="row">
+                <code class="column">
+                    <p class="comment">// Example setup for our simple demo generator. First, for readability, let's set our prefix, middle and suffix arrays to variables</p>
+                    <p>
+                        var demo_prefix = ["Mion", "Kel", "Ke", "A", "Avae", "Syn", "Ad", "Ay", "Ca", "Cer", "Ci", "Dae", "Da", "Dor", "La", "E", "Eir", "Weld", "Fi", "Ga"];
+                    </p>
+                    <p>
+                        var demo_middle = ["ith", "ry", "lat", "re", "ve", "vin", "ral", "lyn", "li", "moi", "ly", "ren", "la", "men", "le", "na", "lad"];
+                    </p>
+                    <p>
+                        var demo_suffix = ["zair", "ir", "mis", "har", "ess", "dra", "ric", "len", "ral", "mon", "yra", "lon", "lyn", "ean", "ren", "ra", "or", "ias", "vin", "rith", "ril", "reth", "rion", "her"];
+                    </p>
+                    <p class="comment">// After calling the instance of nameCrafter we have named demo, library is set: the library name ("demo_names"), our syllables and after that the rates on which different lenghts of names come out of the generator. 1 syllable names don't appear at all, 2 syllable namess with rate 7 out of 10, and 3 syllables appear with 3/10 rate.</p>
+                    <p>
+                        var demo = new nameCrafter({maxConsonants: 2});
+                    </p>
+                    <p>
+                        demo.setToLibrary("demo_names", demo_prefix, demo_middle, demo_suffix, {lengthRates : [0,7,3]});
+                    </p>
+                </code>
+                <div class="column">
+                    <p>
+                        Before we can generate any names, we need a syllable library of prefixes, middles and suffixes to choose from! Not only that, the library of a single instance of nameCrafter can actually have multiple prefix, middle and suffix sets for different purposes. All the syllable sets in the single instance of nameCrafter use the same set of library rules that was set in the initialization process, so all the replacements, and bannedClusters apply with all the syllable sets in the library.
+                    </p>
+                    <p>
+                        Typical user case why would you want to use multiple sets in one library would be to have one set for male names, one for female names, and one for family names. 
+                    </p>
+                    <p>
+                        To add a single set to the library, you must pass your data through "setToLibrary" function. The function expects at least 4 pieces of information and then optional settings. First, the function wants a string that functions as a <b>name</b> of the particular set. You will call it later to craft names from syllables of this set.
+                    </p>
+                    <p>
+                        Then you set your <b>prefixes</b>, <b>middles</b> and <b>suffixes</b> on that exact order. These can be setup in two possible ways: either a single array with strings, like ["A","B","C","D"], or a single array with multiple smaller arrays with strings in them, like [["A","B"],["C","D"]]. So what is the difference?
+                    </p>
+                    <p>
+                        In a single level array, all syllables in the array are just as likely to occur in the generated code, but in 2 level array, the closer to the start the child array is, more likely the syllables in it are to appear. Basically, syllables in first child array will ne more common, that children of the very last child array. This gives the results a bit more variation and character.
+                    </p>
+                    <p>
+                        Next, one has a chance to add some extra <b>options</b> specific for this set. These are given in an object, which can have these options: 
+                    </p>
+                    <p>
+                        <b>preposition</b> & <b>postposition</b>. These are fixed pieces of string that are added to the name after everything else is is done. Imagine you want to generate bunch of names with "Mac" in the front, or maybe phrase "child of ". These could be added through <b>preposition</b> which is tagged in front of the name and iotherwise name is generated as normal. <b>postposition</b> works the same, but is added to the end of thet word instead.
+                    </p>
+                    <p>
+                        The more used option however must be <b>lengthRates</b>. This is an array that defines how many syllables the name generated with this set will have and on which likelyhood. The default value is [1,6,3], which reads as follows: the set will generate names with 1, 2 or 3 syllables. The numbers in the array sum to 10, so likelyhood of a name with 1 syllable to appear is 1/10, 2 syllables 6/10, and 3 syllables 3/10. No name bigger than how many values are set in the array can occur unless otherwise specified, and any position with 0 in it simply means that code will not generate any names with that syllable size. 
+                    </p>
+                </div>
+            </div>
+            <h2>craftName function</h2>
+            <div class="row">
+                <div class="column">
+                    <p>
+                        And so, we can start actually crafting names. After all the setups, at this point things get considerably easier. All you need to do is call <b>craftName("name_of_your_set")</b>, and you already got in return an object with string <b>name</b> that is compiled from the syllables that the code chose, and an array by the name <b>originalSyllables</b> that includes the syllables tha name was made from plus the possible pre- or postpositions.
+                    </p>
+                    <p>
+                        Do note, that if any change where made to the name by the "replaceables", this only shows up in the "name"-string, not in the "originalSyllables"-array. This could be used to spot problems with "replaceables", but also could be used to display the construction, like is the syllables/parts have a meaning in your fantasy language and things of that sort. 
+                    </p>
+                    <p>
+                        However, I do not know in what context you need to call the craftName function, maybe there is a situation you want to keep the set-options intact but need a make a specific exception to one of the rules to... lets say, create this instance of of a name that is exactly 2 syllables/parts long, instead of raffling the syllable count, or maybe for a certain instance, you want to change the odds which certains lenght of names appear? Well, you are in luck as craftNames accepts <b>exceptions</b>-object, where you can do just that.
+                    </p>
+                    <p>
+                        Currently, you can change 3 different things with "exceptions" object. You can override pre- and/or postposition, or you can set <b>nameLength</b>. The nameLenght can be an integer (min value of 1) that fixes the syllable/part amount of the name generated, or you can give it and array and set propabilities like with <b>lengthRates</b> when setting up a set in a first place. 
+                    </p>
+                </div>
+                <code class="column">
+                    <p class="comment">// Default mode, simply makes a name from settings and syllables in the "demo_names"-set.</p>
+                    <p>
+                        var newName1 = demo.craftName("demo_names");
+                    </p>
+                    <p class="comment">// Uses the demo_names set, but makes a name exactly 2 syllables long, and adds postposition "-chan" to the end of it.</p>
+                    <p>
+                        var newName2 = demo.craftName("demo_names", { nameLength : 2, postposition: "-chan"});
+                    </p>
+                    <p class="comment">// craftName returns an object, with "name" string and "originalSyllables" array. For example newName1 might be:</p>
+                    <p>{ name: "Synveric", originalSyllables : ["Syn","ve","ric"] }</p>
+                    <p class="comment">// while newName2 might look something like:</p>
+                    <p>{ name: "Cimon-kun", originalSyllables : ["Ci","mon","-kun"] }</p>
+                </code>
+            </div>
+            <h2>craftMultipleNames function</h2>
+            <div class="row">
+                <code class="column">
+                    <p class="comment">// newNames1 makes an array of 3 objects with the same type of data output than craftName function would</p>
+                    <p>var newNames1 = demo.craftMultipleNames(3, "demo_names");</p>
+                    <p class="comment">// newNames2 returns an array, that returns 3 seperate arrays, each of them containing 2 name objects, one made with "demo_names"-set, and other with "demo_surnames"-set</p>
+                    <p>var newNames2 = demo.craftMultipleNames(3, ["demo_names", "demo_surnames"]);</p>
+                    <p class="comment">// newNames3 is like newNames2, but now the 3 arrays return 3 objects: first has a name exactly 2 parts/syllables long from demo_names, second has a name exactly 3 parts/syllables long from demo_names and third has a random sized name build with "demo_surnames"-set.</p>
+                    <p>var newNames2 = demo.craftMultipleNames(3, [{name : "demo_names", exceptions : { nameLength: 2 } }, {name : "demo_names", exceptions : {nameLength: 3}}, {name : "demo_surnames"}]);</p>
+                </code>
+                <div class="column">
+                    <p>
+                        So, maybe you want more options right away, or you want to build a fullname, with first name, middle name, and a last name. Well, that is what <b>craftMultipleNames()</b> is for! 
+                    </p>
+                    <p>
+                        In it's most simplest form, you enter an integer (1 or higher) and a name (string) of a set to the craftMultipleNames-function, and it will generate you an array with as many name objects as the integer defined. However, you can also enter it and array, that includes a list of names of sets you want to appear in single full name. Array can be filled with strings, or instead you can use objects with key "name" indicating the name of the set yopu wish to use. in and object, you can also include <b>exceptions</b> object, working similarly as presented with the <b>craftName</b>-function.
+                    </p>
+                </div>
+            </div>
+            <h2>changeSafetySettings function</h2>
+            <div class="row">
+                <div class="column">
+                    <p>Safety first, as they say. To make sure you don't crash your computer by trying to generate huge list of names, the <b>nameCrafter</b> has inbuild <b>safetySettings</b> to stop the numbers going all silly.</p>
+                    <p>You can chage the limits though with the handy dandy <b>changeSafetySettings</b>-function. If you give a value, larger than the numbers, the code will automatically cap the loops to the set maximum value in safetySettings. Enter the value you wished to change with the key corresponding the thing you wish to edit. Default values go as follows:</p>
+                    <p><b>maxFullNames</b>. (Default value 30) This tells the maximum size of the integer you can enter to <b>craftMultipleNames</b>-function.</p>
+                    <p><b>maxSingleNames</b>. (Default value 10) When entering the full name structure in an set-array to the <b>craftMultipleNames</b>-function. If array includes more values than set integer, only the first array cells preceiding the number will be generated.</p>
+                    <p><b>maxSyllables</b>. (Default value 10) Maximum amount of syllables/parts that code will join together.</p>
+                </div>
+                <code class="column">
+                    <p class="comment">// make it possible to use numbers as big as 50 to craftMultipleNames-function.</p>
+                    <p>demo.changeSafetySettings({maxFullNames : 50});</p>
+                </code>
+            </div>
         </div>
     </body>
 </html>

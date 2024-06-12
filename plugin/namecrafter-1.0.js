@@ -1,21 +1,25 @@
 class nameCrafter {
-    constructor (languageConfig, debugging) {
+    
+    // giving the default options for single instance of nameCrafter, and setting debugger on.
+    
+    constructor (libraryConfig, debugging = false) {
         
-        this.languageOptions = {
+        this.libraryOptions = {
             vowels : "[aeiouy]",
             consonants : "[bcdfghjklmnpqrstvwxz]",
-            mixes : "",
             maxVowels : 2,
             maxConsonants : 3,
-            bannedClusters: {},
-            replaceables: {}
+            bannedClusters : {},
+            replaceables : {},
+            matchModifier : "gi",
+            replaceModifier: "g" 
         };
         
         this.library = {};
-        this.debug = false;
+        this.debug = debugging;
         
-        if (typeof languageConfig === "object") {
-            this.languageOptions = {...this.languageOptions, ...languageConfig };
+        if (typeof libraryConfig === "object") {
+            this.libraryOptions = {...this.libraryOptions, ...libraryConfig };
         }
         
         if (typeof debugging === "boolean") {
@@ -26,115 +30,92 @@ class nameCrafter {
     }
     
     init() {
+        
+        this.safetySettings = {
+            maxFullNames : 30,
+            maxSingleNames : 10,
+            maxSyllables : 10
+        };
+        
         if (this.debug) {
-            console.log("nameCrafter successfully initialized. Waiting for the syllable library.");
+            console.log("nameCrafter successfully initialized. Waiting for syllable sets to populate the library.");
         }
     }
+    
+    changeSafetySettings(newSettings = {}) {
+        if (typeof newSettings === "object") {
+            this.safetySettings = {...this.safetySettings, ...newSettings };
+            
+            if (this.debug) {
+                console.log("nameCrafter: Safety settings updated succesfully. I hope you are sure about this!");
+            }
+        } else if (this.debug) {
+            console.log("nameCrafter: Safety settings failed to update. Waited for an object.");
+        }
+    }
+    
+    // general utility functions
     
     randomize(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
     
-    testTheSyllableCharts(chart) {
+    matchPattern(string, pattern, modifier = this.libraryOptions.matchModifier) {
+        
+        var result = false;
+        
+        if (string.match(new RegExp(pattern, modifier)) !== null) {
+            result = true;
+        }
+        
+        return result;
+    }
+    
+    // syllable manipulation
+    
+    testTheSyllableCharts(chart, chartName) {
+        
+        let test = "was a success.";
+        
+        if (this.debug) {
+            console.log("nameCrafter: Testing " + chartName + "-array.");
+        }
+        
         if (Array.isArray(chart)) {
             if (chart.every(v => !Array.isArray(v))) {
-                chart = [chart.flat()];
-                if (this.debug) {
-                    console.log("nameCrafter: One of the syllable arrays either was only one level deep, or there was strings and arrays mixed in the array on the same level. This has been automatically fixed for you by flattening the original array, and putting it in a new array.");
+                
+                if (chart.every(v => typeof v === "string")) {
+                    if (this.debug) {
+                        console.log("nameCrafter: Single syllable array given, when testing the " + chartName + "-array. Array packed to another array to match function requirements.");
+                    }
+                } else {
+                    chart = chart.flat();
+                    if (this.debug) {
+                        console.log("nameCrafter: While testing the " + chartName + "-array, there was mix of different types of children. Array was flattened to reduce the posibility of bugs.");
+                    }
                 }
+                chart = [chart];
             }
         } else {
             if (this.debug) {
-                console.log("nameCrafter: One of the syllable arrays is not an object. makes sure you are giving the syllables in form of an array.");
+                console.log("nameCrafter: While testing the " + chartName + "-array, it did not appear to be an array at all. Make sure you are giving the syllables in form of an array.");
+                test = "failed";
             }
+        }
+        
+        if (this.debug) {
+            console.log("nameCrafter: Testing " + chartName + "-array check complete. It " + test);
         }
         
         return chart;
-    }
-    
-    
-    setSyllableRates(syllableChart) {
-        let rates = [];
-        
-        for (let i = 0; i < syllableChart.length; i++) {
-            rates[i] = syllableChart.length * 2 - i;
-        }
-     
-        return rates;
-    }
-    
-    setToLibrary(name, prefixes, middles, suffixes, defaultLengthRates = [2,6,4,1]) {
-        
-        prefixes = this.testTheSyllableCharts(prefixes);
-        middles = this.testTheSyllableCharts(middles);
-        suffixes = this.testTheSyllableCharts(suffixes);
-        
-        this.library[name.toString()] = {
-            "prefixes" : prefixes,
-            "prefixRates" : this.setSyllableRates(prefixes),
-            "middles" : middles,
-            "middleRates" : this.setSyllableRates(middles),
-            "suffixes" : suffixes,
-            "suffixRates" : this.setSyllableRates(suffixes),
-            "lengthRates" : defaultLengthRates
-        };
-        
-        if (this.debug) {
-            console.log("nameCrafter: Syllable library " + name.toString() + " set succesfully.");
-        }
-    }
-    
-    determineRate(rates) {
-        let totalRate = 0;
-        let minCheck = false; 
-        let minLength = 1;
-        
-        for (let i = 0; i < rates.length; i++) {
-            totalRate = totalRate + rates[i];
-        }
-        
-        return this.randomize(0, totalRate);
-    }
-    
-    determineNumberFromRate(rates) {
-        
-        let rate = this.determineRate(rates);
-        
-        let amount = 0;
-        
-        for (let i = 0, total = 0; i < rates.length; i++) {
-            total = total + rates[i];
-            if (rate <= total) {
-                amount = i+1;
-                break;
-            }
-        }
-        
-        return amount;
-        
-    }
-    
-    getCharacterType(character) {
-        
-        let type;
-        
-        if (character.match(new RegExp(this.languageOptions.consonants, "gi"))) {
-            type = "consonants";
-        }
-        
-        if (character.match(new RegExp(this.languageOptions.vowels, "gi"))) {
-            type = "vowels";
-        }
-        
-        return type;
     }
     
     getStartCluster(currentString) {
         
         let startCluster = { "vowels" : 0, "consonants" : 0 };
         
-        let vowels = currentString.match(new RegExp("^" + this.languageOptions.vowels + "+", "gi"));
-        let consonants = currentString.match(new RegExp("^" + this.languageOptions.consonants + "+", "gi"));
+        let vowels = currentString.match(new RegExp("^" + this.libraryOptions.vowels + "+", "gi"));
+        let consonants = currentString.match(new RegExp("^" + this.libraryOptions.consonants + "+", "gi"));
         
         if (vowels) {
             startCluster.vowels = vowels[0].length;
@@ -151,8 +132,8 @@ class nameCrafter {
     getEndCluster(currentString) {
         let endCluster = { "vowels" : 0, "consonants" : 0 };
         
-        let vowels = currentString.match(new RegExp(this.languageOptions.vowels + "+$", "gi"));
-        let consonants = currentString.match(new RegExp(this.languageOptions.consonants + "+$", "gi"));
+        let vowels = currentString.match(new RegExp(this.libraryOptions.vowels + "+$", "gi"));
+        let consonants = currentString.match(new RegExp(this.libraryOptions.consonants + "+$", "gi"));
         
         if (vowels) {
             endCluster.vowels = vowels[0].length;
@@ -166,26 +147,56 @@ class nameCrafter {
         return endCluster;
     }
     
-    matchInArray(string, patterns, modifier = "gi") {
+    
+    // rate sets and checks
+    
+    setSyllableRates(syllableChart) {
+        let rates = [];
         
-        var result = false;
+        for (let i = 0; i < syllableChart.length; i++) {
+            rates[i] = syllableChart.length - i;
+        }
+     
+        return rates;
+    }
+    
+    determineRate(rates) {
+        let totalRate = 0;
+        let minCheck = false; 
+        let minLength = 1;
         
-        for (let i = 0; i < patterns.length; i++) {
-            if (string.match(new RegExp(patterns, modifier)) !== null) {
-                result = true;
-                break;
+        for (let i = 0; i < rates.length; i++) {
+            totalRate = totalRate + rates[i];
+        }
+        
+        return this.randomize(0, totalRate);
+    }
+    
+    determineNumberFromRate(rates) {
+        
+        let current_rate = this.determineRate(rates);
+        let amount = 0;
+        
+        for (let i = 0, threshold = 0; i < rates.length; i++) {
+            threshold = threshold + rates[i];
+            
+            if (rates[i] == 0) {
+                amount = amount + 1;
+            } else if (current_rate > threshold) {
+                amount = amount + 1;
             }
         }
         
-        return result;
+        return amount;
+        
     }
     
     fixedChartsAndRates(currentString, originalSyllables, originalRates) {
         
         let fixedOptions = { "syllables" : [], "rates" : [] };
         let endCluster = this.getEndCluster(currentString);
-        let maxConsonants =  Math.max(0 , this.languageOptions.maxConsonants - endCluster.consonants);
-        let maxVowels =  Math.max(0, this.languageOptions.maxVowels - endCluster.vowels);
+        let maxConsonants =  Math.max(0, this.libraryOptions.maxConsonants - endCluster.consonants);
+        let maxVowels =  Math.max(0, this.libraryOptions.maxVowels - endCluster.vowels);
         
         for (let i = 0; i < originalSyllables.length; i++) {
             let currentSyllableGroup = [];
@@ -195,29 +206,27 @@ class nameCrafter {
                 let currentSyllable = originalSyllableGroup[c];
                 let startCluster = this.getStartCluster(currentSyllable);
                 
+                
                 if (startCluster.vowels <= maxVowels && startCluster.consonants <= maxConsonants) {
         
                     let pass = true;
                     
-                    if (Object.keys(this.languageOptions.bannedClusters).length) {
+                    if (Object.keys(this.libraryOptions.bannedClusters).length) {
 
-                        for (let [situation, banned] of Object.entries(this.languageOptions.bannedClusters)) {
-
-                            if (currentString.match(new RegExp(situation, "gi")) !== null && this.matchInArray(currentSyllable, banned) == true) {
+                        for (let [situation, banned] of Object.entries(this.libraryOptions.bannedClusters)) {
+                            if ( this.matchPattern(currentString, situation) && this.matchPattern(currentSyllable, banned)) {
                                 pass = false;
-                                break;
                             }
-
+                        
                         }
+                        
                     }
                     
                     if (pass == true) {
                         currentSyllableGroup.push(currentSyllable);
                     }
-
-                    
+    
                 }
-                
                 
             }
             
@@ -231,37 +240,89 @@ class nameCrafter {
         
     }
     
-    craftName(library, nameLength = 0) {
+    // Setting a new set to the Library
+    
+    setToLibrary(name, prefixes, middles, suffixes, options = {}) {
         
-        let currentLibrary = this.library[library];
+        if (this.debug) {
+            console.log("nameCrafter: Setting up " + name + "-set to the library.");
+        }
         
-        if (typeof nameLength == "number" && nameLength > 0) {
-            nameLength = Math.round(nameLength);
-        } else if (typeof nameLength == "number") {
-            nameLength = this.determineNumberFromRate(currentLibrary.lengthRates);
-        } else if (typeof nameLength == "object") {
-            nnameLength = this.determineNumberFromRate(nameLength);
+        this.defaultSetOptions = {
+            preposition : null,
+            postposition : null,
+            lengthRates : [1,6,3]
+        };
+        
+        prefixes = this.testTheSyllableCharts(prefixes, "prefix");
+        middles = this.testTheSyllableCharts(middles, "middle");
+        suffixes = this.testTheSyllableCharts(suffixes, "suffix");
+        
+        this.library[name.toString()] = {
+            "prefixes" : prefixes,
+            "prefixRates" : this.setSyllableRates(prefixes),
+            "middles" : middles,
+            "middleRates" : this.setSyllableRates(middles),
+            "suffixes" : suffixes,
+            "suffixRates" : this.setSyllableRates(suffixes),
+            "options" : {...this.defaultSetOptions, ...options }
+        };
+        
+        if (this.debug) {
+            console.log("nameCrafter: Syllable set " + name.toString() + " setup completed.");
+        }
+    }
+    
+    
+    // Name Crafting functions
+    
+    craftName(set, exceptions = {}) {
+        let nameLength;
+        
+        if (this.debug) {
+            console.log("nameCrafter: Attempting to craft a name.");
+        }
+        
+        let currentSet = this.library[set];
+        
+        if (typeof exceptions.nameLength == "number" && exceptions.nameLength > 0) {
+            nameLength = Math.round(exceptions.nameLength);
+        } else if (typeof exceptions.nameLength == "number" | !exceptions.nameLength) {
+            nameLength = this.determineNumberFromRate(currentSet.options.lengthRates)+1;
+        } else if (typeof exceptions.nameLength == "object") {
+            nameLength = this.determineNumberFromRate(exceptions.nameLength)+1;
         } else {
             if (this.debug) {
                 console.log("nameCrafter: nameLength given in wrong form. Check that you give the data either as integer or an array.");
             }
         }
         
+        nameLength = Math.min(Math.max(nameLength, 1), this.safetySettings.maxSyllables);
         
-        let nameData = { "name": "", "syllables": [] };
+        if (this.debug) {
+            console.log("nameCrafter: " + nameLength + " syllables.");
+        }
+        
+        
+        let nameData = { "name": "", "originalSyllables": [] };
         
         for (let i = 0; i < nameLength; i++) {
             
-            let parts = currentLibrary.middles;
-            let rates = currentLibrary.middleRates;
+            if (this.debug) {
+                let t = i+1;
+                console.log("nameCrafter: Determining syllable " + t );
+            }
+            
+            let parts = currentSet.middles;
+            let rates = currentSet.middleRates;
             let currentOptions;
             
             if (i == 0) {
-                parts = currentLibrary.prefixes;
-                rates = currentLibrary.prefixRates;
+                parts = currentSet.prefixes;
+                rates = currentSet.prefixRates;
             } else if (i == nameLength-1) {
-                parts = currentLibrary.suffixes;
-                rates = currentLibrary.suffixRates;
+                parts = currentSet.suffixes;
+                rates = currentSet.suffixRates;
             }
             
             if (i == 0) {
@@ -270,19 +331,50 @@ class nameCrafter {
                 currentOptions = this.fixedChartsAndRates(nameData.name, parts, rates);
             }
             
-            let rarityGroup = currentOptions.syllables[this.determineNumberFromRate(currentOptions.rates)-1];
+            let rarityGroup = currentOptions.syllables[this.determineNumberFromRate(currentOptions.rates)];
             let syllable = rarityGroup[this.randomize(0,rarityGroup.length-1)];
             
             nameData.name += syllable;
-            nameData.syllables.push(syllable);
+            nameData.originalSyllables.push(syllable);
+            
+            if (this.debug) {
+                console.log("nameCrafter: chose syllable: " + syllable );
+            }
         }
         
-        for (let [key, cases] of Object.entries(this.languageOptions.replaceables)) {
+        if (Object.keys(this.libraryOptions.replaceables).length) {
             
-            if (nameData.name.match(new RegExp(key, "gi"))) {
-                for (let [which, what] of Object.entries(cases)) {
-                    nameData.name = nameData.name.replace(new RegExp(which, "g"), what);
+            if (this.debug) {
+                console.log("nameCrafter: checking name for replacables.");
+            }
+        
+            for (let [key, cases] of Object.entries(this.libraryOptions.replaceables)) {
+
+                if (this.matchPattern(nameData.name, key)) {
+                    for (let [which, what] of Object.entries(cases)) {
+                        nameData.name = nameData.name.replace(new RegExp(which, this.libraryOptions.replaceModifier), what);
+                    }
                 }
+            }
+        }
+        
+        let preposition = exceptions.preposition ? exceptions.preposition : currentSet.options.preposition;
+        let postposition = exceptions.postposition ? exceptions.postposition : currentSet.options.postposition;
+        
+        
+        if (preposition) {
+            nameData.originalSyllables.unshift(preposition);
+            nameData.name = preposition + nameData.name;
+            if (this.debug) {
+                console.log("nameCrafter: Added preposition.");
+            }
+        }
+        
+        if (postposition) {
+            nameData.name += postposition;
+            nameData.originalSyllables.push(postposition);
+            if (this.debug) {
+                console.log("nameCrafter: Added postposition.");
             }
         }
         
@@ -290,49 +382,56 @@ class nameCrafter {
         
     }
     
-    craftMultipleNames(totalNames, libraryInfo) {
-        
-        
+    craftMultipleNames(totalNames, setInfo) {
         let names = [];
+        
+        totalNames = Math.min(Math.max(totalNames,1), this.safetySettings.maxFullNames);
+        
         for (let i = 0; i < totalNames; i++) {
+            
+            if (this.debug) {
+                let t = i+1;
+                console.log("nameCrafter: crafting name number " + t);
+            }
             
             var name = [];
             
-            if (typeof libraryInfo === "string") {
+            if (typeof setInfo === "string") {
                 
-                
-                name.push(this.craftName(libraryInfo));
+                name.push(this.craftName(setInfo));
             
-            } else if (typeof libraryInfo === "object") {
-                if (libraryInfo.library) {
-                    
-                    if (!libraryInfo.nameLength) {
-                        libraryInfo.nameLength = 0;
-                    }
-                    
-                    name.push(this.craftName(libraryInfo.library, libraryInfo.nameLength));
+            } else if (Array.isArray(setInfo)) {
                 
-                } else {    
-                    
-                    for (let l = 0; l < libraryInfo.length; l++) {
-                        let current = libraryInfo[l];
+                let infoLength = Math.min(setInfo.length, this.safetySettings.maxSingleNames);
+                
+                for (let l = 0; l < infoLength; l++) {
+                    let current = setInfo[l];
+                    if (typeof current === "string") {
+                        
+                        name.push(this.craftName(current, 0));
+                        
+                    } else if (typeof current === "object") {
                         
                         if (!current.nameLength) {
                             current.nameLength = 0;
                         }
                         
-                        name.push(this.craftName(current.library, current.nameLength));
+                        name.push(this.craftName(current.set, current.exceptions));
                     }
                     
-                    
                 }
+                
             } else {
                 if (this.debug) {
-                    console.log("nameCrafter: libraryInfo given in wrong form, expecting object (array) or a string.");
+                    console.log("nameCrafter: setInfo given in wrong form, expecting object (array) or a string.");
                 }
             }
         
             names.push(name);
+        }
+        
+        if (this.debug) {
+            console.log("nameCrafter: Returning names.");
         }
         
         return names;
