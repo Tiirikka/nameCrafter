@@ -186,14 +186,14 @@
                     <p class="comment">// newNames2 returns an array, that returns 3 seperate arrays, each of them containing 2 name objects, one made with "demo_names"-set, and other with "demo_surnames"-set</p>
                     <p>var newNames2 = demo.craftMultipleNames(3, ["demo_names", "demo_surnames"]);</p>
                     <p class="comment">// newNames3 is like newNames2, but now the 3 arrays return 3 objects: first has a name exactly 2 parts/syllables long from demo_names, second has a name exactly 3 parts/syllables long from demo_names and third has a random sized name build with "demo_surnames"-set.</p>
-                    <p>var newNames2 = demo.craftMultipleNames(3, [{name : "demo_names", exceptions : { nameLength: 2 } }, {name : "demo_names", exceptions : {nameLength: 3}}, {name : "demo_surnames"}]);</p>
+                    <p>var newNames2 = demo.craftMultipleNames(3, [{set : "demo_names", exceptions : { nameLength: 2 } }, {set : "demo_names", exceptions : {nameLength: 3}}, {set : "demo_surnames"}]);</p>
                 </code>
                 <div class="column">
                     <p>
                         So, maybe you want more options right away, or you want to build a fullname, with first name, middle name, and a last name. Well, that is what <b>craftMultipleNames()</b> is for! 
                     </p>
                     <p>
-                        In it's most simplest form, you enter an integer (1 or higher) and a name (string) of a set to the craftMultipleNames-function, and it will generate you an array with as many name objects as the integer defined. However, you can also enter it and array, that includes a list of names of sets you want to appear in single full name. Array can be filled with strings, or instead you can use objects with key "name" indicating the name of the set yopu wish to use. in and object, you can also include <b>exceptions</b> object, working similarly as presented with the <b>craftName</b>-function.
+                        In it's most simplest form, you enter an integer (1 or higher) and a name (string) of a set to the craftMultipleNames-function, and it will generate you an array with as many name objects as the integer defined. However, you can also enter it and array, that includes a list of names of sets you want to appear in single full name. Array can be filled with strings, or instead you can use objects with key "set" indicating the name of the set yopu wish to use. in and object, you can also include <b>exceptions</b> object, working similarly as presented with the <b>craftName</b>-function.
                     </p>
                 </div>
             </div>
