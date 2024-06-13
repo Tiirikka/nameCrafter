@@ -62,13 +62,7 @@ class nameCrafter {
     
     matchPattern(string, pattern, modifier = this.libraryOptions.matchModifier) {
         
-        var result = false;
-        
-        if (string.match(new RegExp(pattern, modifier)) !== null) {
-            result = true;
-        }
-        
-        return result;
+        return !!string.match(new RegExp(pattern, modifier));
     }
     
     // syllable manipulation
@@ -161,15 +155,7 @@ class nameCrafter {
     }
     
     determineRate(rates) {
-        let totalRate = 0;
-        let minCheck = false; 
-        let minLength = 1;
-        
-        for (let i = 0; i < rates.length; i++) {
-            totalRate = totalRate + rates[i];
-        }
-        
-        return this.randomize(0, totalRate);
+        return this.randomize(0, rates.reduce((total, current) => total + current, 0));
     }
     
     determineNumberFromRate(rates) {
@@ -180,9 +166,7 @@ class nameCrafter {
         for (let i = 0, threshold = 0; i < rates.length; i++) {
             threshold = threshold + rates[i];
             
-            if (rates[i] == 0) {
-                amount = amount + 1;
-            } else if (current_rate > threshold) {
+            if (rates[i] == 0 || current_rate > threshold) {
                 amount = amount + 1;
             }
         }
