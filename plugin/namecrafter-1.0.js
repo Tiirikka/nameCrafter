@@ -154,13 +154,9 @@ class nameCrafter {
         return rates;
     }
     
-    determineRate(rates) {
-        return this.randomize(0, rates.reduce((total, current) => total + current, 0));
-    }
-    
     determineNumberFromRate(rates) {
         
-        let current_rate = this.determineRate(rates);
+        let current_rate = this.randomize(0, rates.reduce((total, current) => total + current, 0));
         let amount = 0;
         
         for (let i = 0, threshold = 0; i < rates.length; i++) {
@@ -243,12 +239,9 @@ class nameCrafter {
         suffixes = this.testTheSyllableCharts(suffixes, "suffix");
         
         this.library[name.toString()] = {
-            "prefixes" : prefixes,
-            "prefixRates" : this.setSyllableRates(prefixes),
-            "middles" : middles,
-            "middleRates" : this.setSyllableRates(middles),
-            "suffixes" : suffixes,
-            "suffixRates" : this.setSyllableRates(suffixes),
+            "prefix" : { syllables : prefixes, rates : this.setSyllableRates(prefixes)},
+            "middle" : { syllables : middles, rates : this.setSyllableRates(middles)},
+            "suffix" : { syllables : suffixes, rates : this.setSyllableRates(this.setSyllableRates(suffixes))},
             "options" : {...this.defaultSetOptions, ...options }
         };
         
@@ -297,22 +290,18 @@ class nameCrafter {
                 console.log("nameCrafter: Determining syllable " + t );
             }
             
-            let parts = currentSet.middles;
-            let rates = currentSet.middleRates;
             let currentOptions;
             
             if (i == 0) {
-                parts = currentSet.prefixes;
-                rates = currentSet.prefixRates;
+                currentOptions = currentSet.prefix;
             } else if (i == nameLength-1) {
-                parts = currentSet.suffixes;
-                rates = currentSet.suffixRates;
+                currentOptions = currentSet.suffix;
+            } else {
+                currentOptions = currentSet.middle;
             }
             
-            if (i == 0) {
-                currentOptions = { "syllables" : parts, "rates" : rates };
-            } else {
-                currentOptions = this.fixedChartsAndRates(nameData.name, parts, rates);
+            if (i > 0) {
+                currentOptions = this.fixedChartsAndRates(nameData.name, currentOptions.syllables, currentOptions.rates);
             }
             
             let rarityGroup = currentOptions.syllables[this.determineNumberFromRate(currentOptions.rates)];
