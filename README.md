@@ -6,6 +6,8 @@ But what is this nameCrafter exactly? To get the basic premise and how it works,
 
 ## Updates
 
+15.06.2024 - slimmed down and made the original funtion that finds the possible syllables to join lot more effective, and added possibility to define what counts as a long syllable, and how many long syllables can be in a single name. 
+
 12.06.2024 - banned_cluster bug fixed and making sure all the starting features I wished to have here are functional. There is a wishlist of things I want to add and make better over time, but 1.0 should now be usable anmd public!  
 
 09.06.2024 - First Git commit. Things ain't quite functioning right yet, but I'll be fixing it shortly. The banned_clusters still working unexpectedly, sometimes causing unwanted syllable pairings.
@@ -42,7 +44,6 @@ Further setup details, check the index.html for setup info and a little demo.
 
 ## Planned/Dream features to add when possible
 
-- Ability to detect long and short syllables, to control name lenghts a bit more accurately and set boundaries on what size syllables nameCrafter will use when making the names; and all of that should be something that one could control from options
 - Adding more flexibility on the prepositions and postpotions 
 - Ability to generate compound names with flexible ways to join them together
 - Adding puhnctuations in middle of names based on chosen criteria

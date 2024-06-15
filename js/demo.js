@@ -4,15 +4,15 @@ var demo_suffix = ["zair","ir","mis","har","ess","dra", "ric", "len", "ral", "mo
 
 
 $(document).ready(function() {
-    var demo_1 = new nameCrafter({maxConsonants: 2});
-    demo_1.setToLibrary("demo_names", demo_prefix, demo_middle, demo_suffix, {lengthRates : [0,7,3]});
+    var demo = new nameCrafter({maxConsonants: 2, bannedClusters : { "n$" : "^m", "c$" : "^[qwrtplkjhgfdzxcvbnm]"}});
+    demo.setToLibrary("demo_names", demo_prefix, demo_middle, demo_suffix, { lengthRates : [0,7,3] });
     
     $("#demo_1").on( "click", function() {
     
         $("#intro_demo").empty();
         
 
-        var new_names = demo_1.craftMultipleNames(5, [{ set : "demo_names"}]);
+        var new_names = demo.craftMultipleNames(5, [{ set : "demo_names"}]);
         $("#intro_demo").append("<p>");
         for (let i = 0; i < new_names.length; i++) {
             let name = "";

@@ -171,43 +171,49 @@ class nameCrafter {
         
     }
     
-    fixedChartsAndRates(currentString, originalSyllables, originalRates) {
+    // Syllable filters 
+    
+    
+    filterByClusterSizes(originalSyllableGroup, max = { consonants: 0, vowels : 0}) {
+        return originalSyllableGroup.filter((currentSyllable) => this.getStartCluster(currentSyllable).vowels <= max.vowels && this.getStartCluster(currentSyllable).consonants <= max.consonants);
+    }
+    
+    filterOffBanned(originalSyllableGroup, nameSoFar, situation, banned) {
+        return originalSyllableGroup.filter((currentSyllable) => !(this.matchPattern(nameSoFar, situation) && this.matchPattern(currentSyllable, banned)));
+    }
+    
+    filterOffLongSyllables(originalSyllableGroup, longSyllableThreshold) {
+        return originalSyllableGroup.filter((c) => c.length < longSyllableThreshold);
+    }
+    
+    filterOffShortSyllables(originalSyllableGroup, longSyllableThreshold) {
+        return originalSyllableGroup.filter((c) => c.length >= longSyllableThreshold);
+    }
+    
+    
+    fixedChartsAndRates(round, nameSoFar, originalSyllables, originalRates, allowLongSyllables = true, longSyllableThreshold = 4, mustHave = false) {
         
         let fixedOptions = { "syllables" : [], "rates" : [] };
-        let endCluster = this.getEndCluster(currentString);
-        let maxConsonants =  Math.max(0, this.libraryOptions.maxConsonants - endCluster.consonants);
-        let maxVowels =  Math.max(0, this.libraryOptions.maxVowels - endCluster.vowels);
+        let endCluster = this.getEndCluster(nameSoFar);
+        let max = { consonants : Math.max(0, this.libraryOptions.maxConsonants - endCluster.consonants), vowels : Math.max(0, this.libraryOptions.maxVowels - endCluster.vowels)};
         
         for (let i = 0; i < originalSyllables.length; i++) {
-            let currentSyllableGroup = [];
-            let originalSyllableGroup = originalSyllables[i];
+            let currentSyllableGroup = originalSyllables[i];
             
-            for (let c = 0; c < originalSyllableGroup.length; c++) {
-                let currentSyllable = originalSyllableGroup[c];
-                let startCluster = this.getStartCluster(currentSyllable);
+            if (!allowLongSyllables) {
+                currentSyllableGroup = this.filterOffLongSyllables(currentSyllableGroup, longSyllableThreshold);
+            } else if (mustHave) {
+                currentSyllableGroup = this.filterOffShortSyllables(currentSyllableGroup, longSyllableThreshold);
+            }
+            
+            if ( round > 0) {
+                currentSyllableGroup = this.filterByClusterSizes(currentSyllableGroup, max);
                 
-                
-                if (startCluster.vowels <= maxVowels && startCluster.consonants <= maxConsonants) {
-        
-                    let pass = true;
-                    
-                    if (Object.keys(this.libraryOptions.bannedClusters).length) {
-
-                        for (let [situation, banned] of Object.entries(this.libraryOptions.bannedClusters)) {
-                            if ( this.matchPattern(currentString, situation) && this.matchPattern(currentSyllable, banned)) {
-                                pass = false;
-                            }
-                        
-                        }
-                        
+                if (Object.keys(this.libraryOptions.bannedClusters).length) {
+                    for (let [situation, banned] of Object.entries(this.libraryOptions.bannedClusters)) {
+                        currentSyllableGroup = this.filterOffBanned(currentSyllableGroup, nameSoFar, situation, banned);
                     }
-                    
-                    if (pass == true) {
-                        currentSyllableGroup.push(currentSyllable);
-                    }
-    
                 }
-                
             }
             
             if (currentSyllableGroup.length) {
@@ -231,7 +237,14 @@ class nameCrafter {
         this.defaultSetOptions = {
             preposition : null,
             postposition : null,
-            lengthRates : [1,6,3]
+            lengthRates : [1,6,3],
+            longSyllable : {
+                threshold : 0,
+                maximums : null,
+                setLengths : null,
+                forceLenghts : false
+            }
+            
         };
         
         prefixes = this.testTheSyllableCharts(prefixes, "prefix");
@@ -242,7 +255,7 @@ class nameCrafter {
             "prefix" : { syllables : prefixes, rates : this.setSyllableRates(prefixes)},
             "middle" : { syllables : middles, rates : this.setSyllableRates(middles)},
             "suffix" : { syllables : suffixes, rates : this.setSyllableRates(this.setSyllableRates(suffixes))},
-            "options" : {...this.defaultSetOptions, ...options }
+            "options" : { ...this.defaultSetOptions, ...options }
         };
         
         if (this.debug) {
@@ -263,18 +276,49 @@ class nameCrafter {
         let currentSet = this.library[set];
         
         if (typeof exceptions.nameLength == "number" && exceptions.nameLength > 0) {
-            nameLength = Math.round(exceptions.nameLength);
+            nameLength = Math.round(exceptions.nameLength)-1;
         } else if (typeof exceptions.nameLength == "number" | !exceptions.nameLength) {
-            nameLength = this.determineNumberFromRate(currentSet.options.lengthRates)+1;
+            nameLength = this.determineNumberFromRate(currentSet.options.lengthRates);
         } else if (typeof exceptions.nameLength == "object") {
-            nameLength = this.determineNumberFromRate(exceptions.nameLength)+1;
+            nameLength = this.determineNumberFromRate(exceptions.nameLength);
         } else {
             if (this.debug) {
                 console.log("nameCrafter: nameLength given in wrong form. Check that you give the data either as integer or an array.");
             }
         }
         
-        nameLength = Math.min(Math.max(nameLength, 1), this.safetySettings.maxSyllables);
+        nameLength = Math.min(Math.max(nameLength, 0), this.safetySettings.maxSyllables);
+        
+        let findLongSyllables = [];
+        let longSyllable = exceptions.longSyllable ? {...currentSet.options.longSyllable, ...exceptions.longSyllable } : currentSet.options.longSyllable;
+        
+        if (longSyllable.setLengths && longSyllable.setLengths[nameLength]) {
+            
+            findLongSyllables = longSyllable.setLengths[nameLength];
+            
+            if (findLongSyllables.length-1 < nameLength) {
+                for (let f = findLongSyllables.length-1; f <= nameLength; f++) {
+                    findLongSyllables.push(false);
+                }
+            } else if (findLongSyllables.length-1 > nameLength) {
+                findLongSyllables = findLongSyllables.filter((c,i) => i <= nameLength);
+            }
+            
+        } else {
+        
+            let maximum = longSyllable.maximums != null && Number.isInteger(parseInt(longSyllable.maximums[nameLength])) ? parseInt(longSyllable.maximums[nameLength]) : nameLength;
+
+            for (let l = 0; l <= nameLength; l++) {
+                if (longSyllable.threshold < 2) {
+                    findLongSyllables.push(true);
+                } else if (longSyllable.maximums.length < nameLength+1 || maximum < 1) {   
+                    findLongSyllables.push(false);
+                } else {
+                    findLongSyllables.push(true);
+                    maximum--;
+                }
+            }
+        }
         
         if (this.debug) {
             console.log("nameCrafter: " + nameLength + " syllables.");
@@ -283,7 +327,7 @@ class nameCrafter {
         
         let nameData = { "name": "", "originalSyllables": [] };
         
-        for (let i = 0; i < nameLength; i++) {
+        for (let i = 0; i <= nameLength; i++) {
             
             if (this.debug) {
                 let t = i+1;
@@ -300,8 +344,8 @@ class nameCrafter {
                 currentOptions = currentSet.middle;
             }
             
-            if (i > 0) {
-                currentOptions = this.fixedChartsAndRates(nameData.name, currentOptions.syllables, currentOptions.rates);
+            if ( i > 0 || !findLongSyllables[i] || longSyllable.forceLenghts) {
+                currentOptions = this.fixedChartsAndRates(i, nameData.name, currentOptions.syllables, currentOptions.rates, findLongSyllables[i], longSyllable.threshold, longSyllable.forceLenghts);
             }
             
             let rarityGroup = currentOptions.syllables[this.determineNumberFromRate(currentOptions.rates)];
@@ -309,6 +353,18 @@ class nameCrafter {
             
             nameData.name += syllable;
             nameData.originalSyllables.push(syllable);
+            
+            if (syllable.length >= longSyllable.threshold && i < nameLength && findLongSyllables[i] && !longSyllable.forceLenghts) {
+                
+                let maximum = 1;
+                
+                for (let f = i+1; f <= nameLength; f++) {
+                    if (findLongSyllables[f] == false && maximum > 0) {
+                        findLongSyllables[f] = true;
+                        maximum--;
+                    }
+                }
+            }
             
             if (this.debug) {
                 console.log("nameCrafter: chose syllable: " + syllable );

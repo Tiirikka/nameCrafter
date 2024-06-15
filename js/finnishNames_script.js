@@ -77,9 +77,9 @@ var replace_character = {
 $(document).ready(function() {
     
     var finnish_names = new nameCrafter({vowels : "[aeiouyäö]", maxVowels: 3, bannedClusters : banned_clusters, replaceables : replace_character});
-    finnish_names.setToLibrary("male_names", male_names.prefixes, male_names.middles, male_names.suffixes, {lengthRates : [5,557,104,6,1]});
-    finnish_names.setToLibrary("female_names", female_names.prefixes, female_names.middles, female_names.suffixes, {lengthRates : [5,818,268,12,1]});
-    finnish_names.setToLibrary("last_names", last_names.prefixes, last_names.middles, last_names.suffixes, {lengthRates : [0,132,282,2,1]});
+    finnish_names.setToLibrary("male_names", male_names.prefixes, male_names.middles, male_names.suffixes, {lengthRates : [5,557,104,6,1], longSyllable : { threshold : 3, maximums : [1,2,2,2,1], setLengths : [[true]] } });
+    finnish_names.setToLibrary("female_names", female_names.prefixes, female_names.middles, female_names.suffixes, {lengthRates : [5,818,268,12,1], longSyllable : { threshold : 3, maximums : [1,2,2,2,1], setLengths : [[true]] }});
+    finnish_names.setToLibrary("last_names", last_names.prefixes, last_names.middles, last_names.suffixes, {lengthRates : [0,132,282,2,1], longSyllable : { threshold : 3, maximums : [0,2,2,2,2] }});
 
     
     $("#male_names").on( "click", function() {
@@ -106,8 +106,6 @@ $(document).ready(function() {
         
 
         var new_names = finnish_names.craftMultipleNames(10, [{set:"female_names"},{set:"last_names"}]);
-        
-        console.log(new_names);
         
         for (let i = 0; i < new_names.length; i++) {
             let name = "";

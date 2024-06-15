@@ -127,6 +127,10 @@ code {
     color: var(--light_grey);
 }
 
+footer {
+    text-align: center;
+}
+
 /* Form Elements */
 
 button {
