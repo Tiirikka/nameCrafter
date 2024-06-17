@@ -11,6 +11,11 @@ class nameCrafter {
             maxConsonants : 3,
             bannedClusters : {},
             replaceables : {},
+            blockRepeats : [
+                { min: 2, max: 2, allowed: 1},
+                { min: 3, max: null, allowed: 0}
+            ],
+            punctuation: {},
             matchModifier : "gi",
             replaceModifier: "g" 
         };
@@ -63,6 +68,11 @@ class nameCrafter {
     matchPattern(string, pattern, modifier = this.libraryOptions.matchModifier) {
         
         return !!string.match(new RegExp(pattern, modifier));
+    }
+    
+    matchAmount(string, pattern, modifier = this.libraryOptions.matchModifier) {
+        let match = string.match(new RegExp(pattern, modifier));
+        return !!match ? match.length : 0;
     }
     
     // syllable manipulation
@@ -190,6 +200,26 @@ class nameCrafter {
         return originalSyllableGroup.filter((c) => c.length >= longSyllableThreshold);
     }
     
+    filterOffRepeats(originalSyllableGroup, nameSoFar, repeatRule) {
+       return originalSyllableGroup.filter((c) => {
+           let check = true;
+           
+           if (repeatRule.min > 0 && repeatRule.allowed >= 0) {
+               
+               let match = this.matchAmount(nameSoFar, c);
+               let max = Number.isInteger(repeatRule.max) && repeatRule.max >= repeatRule.min ? true : Boolean(c.length <= repeatRule.max);
+               
+               
+               if (c.length >= repeatRule.min && max && match >= repeatRule.allowed) {
+                   check = false;
+               }
+           }
+           
+           return check;
+           
+       });
+    } 
+    
     
     fixedChartsAndRates(round, nameSoFar, originalSyllables, originalRates, allowLongSyllables = true, longSyllableThreshold = 4, mustHave = false) {
         
@@ -212,6 +242,21 @@ class nameCrafter {
                 if (Object.keys(this.libraryOptions.bannedClusters).length) {
                     for (let [situation, banned] of Object.entries(this.libraryOptions.bannedClusters)) {
                         currentSyllableGroup = this.filterOffBanned(currentSyllableGroup, nameSoFar, situation, banned);
+                    }
+                }
+            
+                if (this.libraryOptions.blockRepeats) {
+
+                    if (Array.isArray(this.libraryOptions.blockRepeats)) {
+                        for (var r = 0; r < this.libraryOptions.blockRepeats.length; r++) {
+                            currentSyllableGroup = this.filterOffRepeats(currentSyllableGroup, nameSoFar, this.libraryOptions.blockRepeats[r]);
+                        }
+                    } else if (typeof this.libraryOptions.blockRepeats == "object") {
+                        currentSyllableGroup = this.filterOffRepeats(currentSyllableGroup, nameSoFar, this.libraryOptions.blockRepeats);
+                    } else {
+                        if (this.debug) {
+                            console.log("nameCrafter: blockRepeats given to library in non-traditional form.");
+                        }
                     }
                 }
             }
@@ -338,23 +383,43 @@ class nameCrafter {
             
             if (i == 0) {
                 currentOptions = currentSet.prefix;
-            } else if (i == nameLength-1) {
+            } else if (i == nameLength) {
                 currentOptions = currentSet.suffix;
             } else {
                 currentOptions = currentSet.middle;
             }
+            
             
             if ( i > 0 || !findLongSyllables[i] || longSyllable.forceLenghts) {
                 currentOptions = this.fixedChartsAndRates(i, nameData.name, currentOptions.syllables, currentOptions.rates, findLongSyllables[i], longSyllable.threshold, longSyllable.forceLenghts);
             }
             
             let rarityGroup = currentOptions.syllables[this.determineNumberFromRate(currentOptions.rates)];
-            let syllable = rarityGroup[this.randomize(0,rarityGroup.length-1)];
+            let syllable = "";
+               
+            if (rarityGroup) {
+                syllable = rarityGroup[this.randomize(0,rarityGroup.length-1)];
+            } else if (this.debug) {
+                console.log("nameCrafter: One syllable skipped, there was no fitting syllables in the current circumstance.");
+            }
             
-            nameData.name += syllable;
+            if (Object.keys(this.libraryOptions.punctuation).length) {
+                for (let [key, cases] of Object.entries(this.libraryOptions.punctuation)) {
+                    if (this.matchPattern(nameData.name, key)) {
+                        for (let [which, what] of Object.entries(cases)) {
+                            if (this.matchPattern(syllable, which)) {
+                                nameData.name += what;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            nameData.name += syllable.trim();
             nameData.originalSyllables.push(syllable);
             
-            if (syllable.length >= longSyllable.threshold && i < nameLength && findLongSyllables[i] && !longSyllable.forceLenghts) {
+            if (syllable.length <= longSyllable.threshold && i < nameLength && findLongSyllables[i] && !longSyllable.forceLenghts) {
                 
                 let maximum = 1;
                 
@@ -392,7 +457,6 @@ class nameCrafter {
         
         
         if (preposition) {
-            nameData.originalSyllables.unshift(preposition);
             nameData.name = preposition + nameData.name;
             if (this.debug) {
                 console.log("nameCrafter: Added preposition.");
@@ -401,7 +465,6 @@ class nameCrafter {
         
         if (postposition) {
             nameData.name += postposition;
-            nameData.originalSyllables.push(postposition);
             if (this.debug) {
                 console.log("nameCrafter: Added postposition.");
             }

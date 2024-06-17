@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>NameCrafter Demos</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Holtwood+One+SC&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css" />
+        <script src="plugin/namecrafter-1.0.js"></script>
+        <script src="js/demos.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <h1>NameCrafter Demos</h1>
+                <p>Here we got in display couple of setups of nameCrafter in action. Enjoy!</p>
+            </header>
+            <section class="generator">
+                <h3>Drow names</h3>
+                <p>This generator uses the syllables collected by <a href="https://www.dnd.kismetrose.com/DrowNameGenerator.html">kismetrose</a> to create drow names. OriginalSyllables array is used to check the meaning of the parts from seperate object to give the name meanings.</p>
+                <div id="drow_names"></div>
+                <br />
+                <button id="drow_male" onclick="craftDrowNames('male')">Generate 10 male Names</button> <button id="drow_female" onclick="craftDrowNames('female')">Generate 10 female names</button> <button id="drow_unisex" onclick="craftDrowNames('unisex')">Generate 10 unisex names</button>
+            </section>
+            <section class="generator">
+                <h3>Finnish names</h3>
+                <p><b>Syllable list under construction, results are still quite unpredictable.</b></p>
+                <p>This generator uses a collection of syllables/parts I compiled from finnish names. It makes sudo-finnish names with 1-3 first names and a last name.</p>
+                <div id="finnish_names"></div>
+                <br />
+                <button id="finnish_male" onclick="craftFinnishNames('male_names')">Generate 10 male Names</button> <button id="finnish_female" onclick="craftFinnishNames('female_names')">Generate 10 female names</button>
+            </section>
+        </div>
+    </body>
+</html>
