@@ -77,6 +77,16 @@ p {
     margin: 0 0 1em;
 }
 
+.name_data:hover .fullname .name_part:nth-child(even),
+.name_data:hover .meaning .name_part:nth-child(even) {
+    color: #009;
+}
+
+.name_data:hover .fullname .name_part:nth-child(odd),
+.name_data:hover .meaning .name_part:nth-child(odd)  {
+    color: #090;
+}
+
 /* Wrappers */
 
 #container {

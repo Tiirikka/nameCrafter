@@ -1,8 +1,8 @@
 var drow = {
     female : {
         prefix : {
-            syllables: ["Akor","Alaun","Aly","Ang","Ardul","Aun","Bae","Bal","Bauth","Belar","Braer","Briz","Bur","Cel","Cez","Chal","Char","Chas","Chel","Chen","Chess","Choa","Crin","Daen","Dan","Daur","Dellyn","Dhaun","Dil","Dirz","Dosst","Draa","Dris","Driss","Dro","Eclav","Elen","Elv","Elvan","Eoul","Erel","Ethe","Faer","Felyn","Filf","G'eld","Gauss","Ghuan","Gin","Grey","Hael","Hal","Har","Hor","Houn","Iim","Iiv","Il","Ilin","Illiam","Ilph","In","Irae","Iym","Izil","Jan","Jhael","Jhin","Jhul","Jyl","Jys","Kar","Kha","Khal","Kier","Kol","Kul","Kyo","Lael","Lal","Lar","LiNeer","Lird","Lua","Mae","Mal","May","Micar","Min","Mol","Myr","Nal","Nara","Nath","Nau","Ned","Neer","Nhil","Null","Nyl","Ob","Ogg","Olor","Orn","Pellan","Pera","Pha","Pha","Phaer","Phin","Pho","Phyr","Plynn","Qil","Qualn","Quar","Quav","Quel","Quen","Quii","Rae","Rath","Rauv","Rel","Riv","Ryl","Sab","Sal","Sara","Sav","Sbat","Sen","Shazu","She","Shi'n","Shri","Shur","Shynt","Sin","Ssap","Susp","Suss","Szar","T'riss","Taga","Tal","Talab","Telan ","Thal","Thia","Tin","Triel","Ulna","Ulvir","Umrae","Us","Usstan","Vas","Vel","Vest","Vic","Vier","Vlon","Wael","Waer","Wuyon","Xan","Xelu","Xi","Xin","Xull","Xun","Xurn","Yas","Yath","Yv","Zar","Zebey","Zes","Zhaun","Zilv"],
-            meanings: {"Akor":"Best","Alaun":"Powerful","Aly":"Legendary","Ang":"Beastly","Ardul":"Divine","Aun":"Deathly","Bae":"Fated","Bal":"Burning","Bauth":"Way","Belar":"Arrow","Braer":"Sick","Briz":"Graceful","Bur":"Sly","Cel":"Ember","Cez":"Careful","Chal":"Earthy","Char":"Sick","Chas":"Void","Chel":"Poison","Chen":"Secret","Chess":"Noble","Choa":"Victorious","Crin":"Superior","Daen":"Amusing","Dan":"Seductive","Daur":"Strange","Dellyn":"Exquisite","Dhaun":"Infested","Dil":"Cold","Dirz":"Dream","Dosst":"Possessed","Draa":"Twofold","Dris":"Ashen","Driss":"Highest","Dro":"Living","Eclav":"Chaos","Elen":"Enduring","Elv":"Magical","Elvan":"Skillful","Eoul":"Fearless","Erel":"Moon","Ethe":"Resolute","Faer":"Oathbound","Felyn":"Pale","Filf":"Treacherous","G'eld":"Ominous","Gauss":"Dread","Ghuan":"Accursed","Gin":"Berserk","Grey":"Spectral","Hael":"Determined","Hal":"Deft","Har":"First","Hor":"Strong","Houn":"Spellbound","Iim":"Spirited","Iiv":"Baleful","Il":"Greedy","Ilin":"Obsessed","Illiam":"Devoted","Ilph":"Emerald","In":"Hidden","Irae":"Mystical","Iym":"Endless","Izil":"Intricate","Jan":"Warded","Jhael":"Ambitious","Jhin":"Patient","Jhul":"Charmed","Jyl":"Golden","Jys":"Relentless","Kar":"Teeming","Kha":"Vengeful","Khal":"Trusted","Kier":"Fickle","Kol":"Hurt","Kul":"Strict","Kyo":"Dangerous","Lael":"Steel","Lal":"New","Lar":"Imperious","LiNeer":"Mythical","Lird":"Baseborn","Lua":"Bright","Mae":"Hardened","Mal":"Mysterious","May":"Beautiful","Micar":"Lost","Min":"Second","Mol":"Menacing","Myr":"Skeletal","Nal":"Brutal","Nara":"Wealthy","Nath":"Doomed","Nau":"Exiled","Ned":"Cunning","Neer":"Persistent","Nhil":"Fearful","Null":"Howling","Nyl":"Jeweled","Ob":"Silver","Ogg":"Distrusted","Olor":"Marked","Orn":"Enchanted","Pellan":"Cutting","Pera":"Calamitous","Pha":"Eloquent","Phaer":"Honored","Phin":"Vile","Pho":"Impetuous","Phyr":"Blessed","Plynn":"Thieving","Qil":"Hated","Qualn":"Rising","Quar":"Commanding","Quav":"Trusted","Quel":"Brave","Quen":"Regal","Quii":"Scheming","Rae":"Alluring","Rath":"Established","Rauv":"Grand","Rel":"Resilient","Riv":"Inferior","Ryl":"Foretold","Sab":"Grave","Sal":"Vicious","Sara":"Opportunistic","Sav":"Mischievous","Sbat":"Amber","Sen":"Masked","Shazu":"Half-Breed","She":"Envious","Shi'n":"Young","Shri":"Silent","Shur":"Dagger","Shynt":"Invisible","Sin":"Pleasured","Ssap":"Midnight","Susp":"Learned","Suss":"Light","Szar":"Calm","T'riss":"Sharp","Taga":"Awakened","Tal":"Gullible","Talab":"Fire","Telan ":"Enticing","Thal":"Diplomatic","Thia":"Singing","Tin":"Steadfast","Triel":"Bat","Ulna":"Persuasive","Ulvir":"Treasured","Umrae":"Ardent","Us":"Lone","Usstan":"Arrogant","Vas":"Blood","Vel":"Invisible","Vest":"Intoxicated","Vic":"Profound","Vier":"Dark","Vlon":"Bold","Wael":"Mad","Waer":"Deep","Wuyon":"Trivial","Xan":"Strategic","Xelu":"Desired","Xi":"Favored","Xin":"Bound","Xull":"Blooded","Xun":"Demon","Xurn":"Resourceful","Yas":"Web","Yath":"Devoted","Yv":"Twin","Zar":"Shadow","Zebey":"Mighty","Zes":"Respected","Zhaun":"Insightful","Zilv":"Forgotten"}
+            syllables: ["Akor","Alaun","Aly","Ang","Ardul","Aun","Bae","Bal","Bauth","Belar","Braer","Briz","Bur","Cel","Cez","Chal","Char","Chas","Chel","Chen","Chess","Choa","Crin","Daen","Dan","Daur","Dellyn","Dhaun","Dil","Dirz","Dosst","Draa","Dris","Driss","Dro","Eclav","Elen","Elv","Elvan","Eoul","Erel","Ethe","Faer","Felyn","Filf","G'eld","Gauss","Ghuan","Gin","Grey","Hael","Hal","Har","Hor","Houn","Iim","Iiv","Il","Ilin","Illiam","Ilph","In","Irae","Iym","Izil","Jan","Jhael","Jhin","Jhul","Jyl","Jys","Kar","Kha","Khal","Kier","Kol","Kul","Kyo","Lael","Lal","Lar","LiNeer","Lird","Lua","Mae","Mal","May","Micar","Min","Mol","Myr","Nal","Nara","Nath","Nau","Ned","Neer","Nhil","Null","Nyl","Ob","Ogg","Olor","Orn","Pellan","Pera","Pha","Pha","Phaer","Phin","Pho","Phyr","Plynn","Qil","Qualn","Quar","Quav","Quel","Quen","Quii","Rae","Rath","Rauv","Rel","Riv","Ryl","Sab","Sal","Sara","Sav","Sbat","Sen","Shazu","She","Shi'n","Shri","Shur","Shynt","Sin","Ssap","Susp","Suss","Szar","T'riss","Taga","Tal","Talab","Telan","Thal","Thia","Tin","Triel","Ulna","Ulvir","Umrae","Us","Usstan","Vas","Vel","Vest","Vic","Vier","Vlon","Wael","Waer","Wuyon","Xan","Xelu","Xi","Xin","Xull","Xun","Xurn","Yas","Yath","Yv","Zar","Zebey","Zes","Zhaun","Zilv"],
+            meanings: {"Akor":"Best","Alaun":"Powerful","Aly":"Legendary","Ang":"Beastly","Ardul":"Divine","Aun":"Deathly","Bae":"Fated","Bal":"Burning","Bauth":"Way","Belar":"Arrow","Braer":"Sick","Briz":"Graceful","Bur":"Sly","Cel":"Ember","Cez":"Careful","Chal":"Earthy","Char":"Sick","Chas":"Void","Chel":"Poison","Chen":"Secret","Chess":"Noble","Choa":"Victorious","Crin":"Superior","Daen":"Amusing","Dan":"Seductive","Daur":"Strange","Dellyn":"Exquisite","Dhaun":"Infested","Dil":"Cold","Dirz":"Dream","Dosst":"Possessed","Draa":"Twofold","Dris":"Ashen","Driss":"Highest","Dro":"Living","Eclav":"Chaos","Elen":"Enduring","Elv":"Magical","Elvan":"Skillful","Eoul":"Fearless","Erel":"Moon","Ethe":"Resolute","Faer":"Oathbound","Felyn":"Pale","Filf":"Treacherous","G'eld":"Ominous","Gauss":"Dread","Ghuan":"Accursed","Gin":"Berserk","Grey":"Spectral","Hael":"Determined","Hal":"Deft","Har":"First","Hor":"Strong","Houn":"Spellbound","Iim":"Spirited","Iiv":"Baleful","Il":"Greedy","Ilin":"Obsessed","Illiam":"Devoted","Ilph":"Emerald","In":"Hidden","Irae":"Mystical","Iym":"Endless","Izil":"Intricate","Jan":"Warded","Jhael":"Ambitious","Jhin":"Patient","Jhul":"Charmed","Jyl":"Golden","Jys":"Relentless","Kar":"Teeming","Kha":"Vengeful","Khal":"Trusted","Kier":"Fickle","Kol":"Hurt","Kul":"Strict","Kyo":"Dangerous","Lael":"Steel","Lal":"New","Lar":"Imperious","LiNeer":"Mythical","Lird":"Baseborn","Lua":"Bright","Mae":"Hardened","Mal":"Mysterious","May":"Beautiful","Micar":"Lost","Min":"Second","Mol":"Menacing","Myr":"Skeletal","Nal":"Brutal","Nara":"Wealthy","Nath":"Doomed","Nau":"Exiled","Ned":"Cunning","Neer":"Persistent","Nhil":"Fearful","Null":"Howling","Nyl":"Jeweled","Ob":"Silver","Ogg":"Distrusted","Olor":"Marked","Orn":"Enchanted","Pellan":"Cutting","Pera":"Calamitous","Pha":"Eloquent","Phaer":"Honored","Phin":"Vile","Pho":"Impetuous","Phyr":"Blessed","Plynn":"Thieving","Qil":"Hated","Qualn":"Rising","Quar":"Commanding","Quav":"Trusted","Quel":"Brave","Quen":"Regal","Quii":"Scheming","Rae":"Alluring","Rath":"Established","Rauv":"Grand","Rel":"Resilient","Riv":"Inferior","Ryl":"Foretold","Sab":"Grave","Sal":"Vicious","Sara":"Opportunistic","Sav":"Mischievous","Sbat":"Amber","Sen":"Masked","Shazu":"Half-Breed","She":"Envious","Shi'n":"Young","Shri":"Silent","Shur":"Dagger","Shynt":"Invisible","Sin":"Pleasured","Ssap":"Midnight","Susp":"Learned","Suss":"Light","Szar":"Calm","T'riss":"Sharp","Taga":"Awakened","Tal":"Gullible","Talab":"Fire","Telan":"Enticing","Thal":"Diplomatic","Thia":"Singing","Tin":"Steadfast","Triel":"Bat","Ulna":"Persuasive","Ulvir":"Treasured","Umrae":"Ardent","Us":"Lone","Usstan":"Arrogant","Vas":"Blood","Vel":"Invisible","Vest":"Intoxicated","Vic":"Profound","Vier":"Dark","Vlon":"Bold","Wael":"Mad","Waer":"Deep","Wuyon":"Trivial","Xan":"Strategic","Xelu":"Desired","Xi":"Favored","Xin":"Bound","Xull":"Blooded","Xun":"Demon","Xurn":"Resourceful","Yas":"Web","Yath":"Devoted","Yv":"Twin","Zar":"Shadow","Zebey":"Mighty","Zes":"Respected","Zhaun":"Insightful","Zilv":"Forgotten"}
         },
         middle: {
             syllables: ["a","ace","ae","aer","aeth","bryn","da","dia","dra","draun","dril","dryn","e","ess","eyl","ffyn","fryn","hyrr","i","ice","jra","jss","lay","less","lin","linth","lith","loth","lur","lyss","mice","mur'ss","na","nath","nei","niss","o","ra","rae","raum","raun","ress","reth","rigg","ril","rimm","rin","rith","roth","ryne","set","shin","sine","stin","syn","thel","thiir","thrae","thrine","tree","tyrr","u","ue","va","ve","vil","vin","vyll","wae","wyss","xae","y","yl","yrr","za","zheel","zild","zyl","zyne"],
@@ -15,8 +15,8 @@ var drow = {
     },
     male : {
         prefix: {
-            syllables: ["Adin","Alak","Alton","Amal","Ant","Araj","Bar","Bauth","Bel","Berg","Bhin","Bol","Bruh","Caer","Cal","Chasz","Chaul","Chel","Col","Dan","Dhaun","Din","Dip","Div","Dosst","Draa","Dragh","Driz","Dro","Droc","Duag","Duk","Dur","Elam","Elaug","Elgg","Elk","Erag","Erth","Fil","Fyr","G'eld","Gare","Gel","Ghol","Ghor","Ghuan","Go","Golo","Gul","Harl","Harn","Has","Hatch","Hong","Hor","Hurz","Ib","Iim","Il","Ilin","Ilph","Ilzt","Im","Ist","Izil","Izz","Jaez","Jal","Jar","Jiv","Kalan","Kar","Kel","Khal","Khaz","Kin","Kol","Kren","Kron","Kul","Les","Llt","Lu","Lyme","Mag","Malag","Mas","Menzo","Mer","Micar","Moc","Mourn","Nad","Nal","Neer","Nil","Nym","Ob","Ogg","Omar","Orgoll","Orm","Parz","Phal","Phar","Pho","Phyx","Plynn","Qual","Quel","Quev","Quii","Quil","Ran","Rel","Relon","Rhyl","Rik","Riz","Ryl","Ryld","Rylu","Sarn","Sav","Sca","Selds","Shar","Shav","Shazu","Shynt","Sol","Sorn","Spir","Ssz","Suss","Szin","Szor","Talen","Tar","Tath","Taz","Teb","Telan ","Thal","Thos","Tin","Tluth","Tsab","Uhls","Ult","Url","Val","Vel","Vest","Vesz","Vhae","Vic","Vid","Vize","Vorn","Vuz","Wehl","Welv","Wod","Wruz","Xal","Xelu","Xorl","Xun","Yaz","Yorn","Yv","Yyrr","Zakn","Zau","Zed","Zek","Zsz"],
-            meanings: {"Adin":"Beastly","Alak":"Best","Alton":"Powerful","Amal":"Divine","Ant":"Deathly","Araj":"Vengeful","Bar":"Fated","Bauth":"Way","Bel":"Burning","Berg":"Graceful","Bhin":"Sly","Bol":"Golden","Bruh":"Arrow","Caer":"Jeweled","Cal":"Noble","Chasz":"Earthy","Chaul":"Secret","Chel":"Poison","Col":"Established","Dan":"Seductive","Dhaun":"Infested","Din":"Berserk","Dip":"Baleful","Div":"Dream","Dosst":"Possessed","Draa":"Twofold","Dragh":"Void","Driz":"Relentless","Dro":"Living","Droc":"Arrogant","Duag":"Warded","Duk":"Vicious","Dur":"Cold","Elam":"Enduring","Elaug":"Magical","Elgg":"Fearful","Elk":"Chaos","Erag":"Strange","Erth":"Resolute","Fil":"Pale","Fyr":"Ardent","G'eld":"Ominous","Gare":"Ember","Gel":"Ambitious","Ghol":"Resourceful","Ghor":"Calm","Ghuan":"Accursed","Go":"Menacing","Golo":"Thricefold","Gul":"Spectral","Harl":"Inferior","Harn":"First","Has":"Strategic","Hatch":"Determined","Hong":"Fearless","Hor":"Strong","Hurz":"Faith","Ib":"Vile","Iim":"Spirited","Il":"Greedy","Ilin":"Obsessed","Ilph":"Emerald","Ilzt":"Mystical","Im":"Devoted","Ist":"Endless","Izil":"Intricate","Izz":"Hidden","Jaez":"Alluring","Jal":"Commanding","Jar":"Charmed","Jiv":"Singing","Kalan":"Skillful","Kar":"Teeming","Kel":"Legendary","Khal":"Trusted","Khaz":"Awakened","Kin":"Careful","Kol":"Hurt","Kren":"Young","Kron":"Sick","Kul":"Strict","Les":"Imperious","Llt":"Steel","Lu":"Exiled","Lyme":"Bright","Mag":"Lone","Malag":"Mysterious","Mas":"Beautiful","Menzo":"Guided","Mer":"Doomed","Micar":"Lost","Moc":"Highest","Mourn":"Mythical","Nad":"Cunning","Nal":"Brutal","Neer":"Persistent","Nil":"Howling","Nym":"Skeletal","Ob":"Silver","Ogg":"Distrusted","Omar":"Marked","Orgoll":"Dread","Orm":"Insightful","Parz":"Amusing","Phal":"Scarred","Phar":"Treacherous","Pho":"Impetuous","Phyx":"Blessed","Plynn":"Thieving","Qual":"Rising","Quel":"Brave","Quev":"Trusted","Quii":"Scheming","Quil":"Hated","Ran":"Second","Rel":"Resilient","Relon":"Cutting","Rhyl":"Moon","Rik":"Spellbound","Riz":"Ashen","Ryl":"Foretold","Ryld":"Baseborn","Rylu":"Patient","Sarn":"Dangerous","Sav":"Mischievous","Sca":"Superior","Selds":"Oathbound","Shar":"Dagger","Shav":"Envious","Shazu":"Half-Breed","Shynt":"Invisible","Sol":"Deft","Sorn":"Enchanted","Spir":"Learned","Ssz":"Silent","Suss":"Light","Szin":"Pleasured","Szor":"Amber","Talen":"Fickle","Tar":"Gullible","Tath":"Midnight","Taz":"Bat","Teb":"Sharp","Telan ":"Enticing","Thal":"Diplomatic","Thos":"Bound","Tin":"Steadfast","Tluth":"Fire","Tsab":"Grave","Uhls":"Treasured","Ult":"Victorious","Url":"Blooded","Val":"Dark","Vel":"Invisible","Vest":"Intoxicated","Vesz":"Blood","Vhae":"Masked","Vic":"Profound","Vid":"Persuasive","Vize":"Student","Vorn":"Honored","Vuz":"Forgotten","Wehl":"Deep","Welv":"Grand","Wod":"Bold","Wruz":"Trivial","Xal":"Possible","Xelu":"Desired","Xorl":"Majestic","Xun":"Demon","Yaz":"Web","Yorn":"Calamitous","Yv":"Twin","Yyrr":"New","Zakn":"Shadow","Zau":"Scorned","Zed":"Favored","Zek":"Mighty","Zsz":"Respected"}
+            syllables: ["Adin","Alak","Alton","Amal","Ant","Araj","Bar","Bauth","Bel","Berg","Bhin","Bol","Bruh","Caer","Cal","Chasz","Chaul","Chel","Col","Dan","Dhaun","Din","Dip","Div","Dosst","Draa","Dragh","Driz","Dro","Droc","Duag","Duk","Dur","Elam","Elaug","Elgg","Elk","Erag","Erth","Fil","Fyr","G'eld","Gare","Gel","Ghol","Ghor","Ghuan","Go","Golo","Gul","Harl","Harn","Has","Hatch","Hong","Hor","Hurz","Ib","Iim","Il","Ilin","Ilph","Ilzt","Im","Ist","Izil","Izz","Jaez","Jal","Jar","Jiv","Kalan","Kar","Kel","Khal","Khaz","Kin","Kol","Kren","Kron","Kul","Les","Llt","Lu","Lyme","Mag","Malag","Mas","Menzo","Mer","Micar","Moc","Mourn","Nad","Nal","Neer","Nil","Nym","Ob","Ogg","Omar","Orgoll","Orm","Parz","Phal","Phar","Pho","Phyx","Plynn","Qual","Quel","Quev","Quii","Quil","Ran","Rel","Relon","Rhyl","Rik","Riz","Ryl","Ryld","Rylu","Sarn","Sav","Sca","Selds","Shar","Shav","Shazu","Shynt","Sol","Sorn","Spir","Ssz","Suss","Szin","Szor","Talen","Tar","Tath","Taz","Teb","Telan","Thal","Thos","Tin","Tluth","Tsab","Uhls","Ult","Url","Val","Vel","Vest","Vesz","Vhae","Vic","Vid","Vize","Vorn","Vuz","Wehl","Welv","Wod","Wruz","Xal","Xelu","Xorl","Xun","Yaz","Yorn","Yv","Yyrr","Zakn","Zau","Zed","Zek","Zsz"],
+            meanings: {"Adin":"Beastly","Alak":"Best","Alton":"Powerful","Amal":"Divine","Ant":"Deathly","Araj":"Vengeful","Bar":"Fated","Bauth":"Way","Bel":"Burning","Berg":"Graceful","Bhin":"Sly","Bol":"Golden","Bruh":"Arrow","Caer":"Jeweled","Cal":"Noble","Chasz":"Earthy","Chaul":"Secret","Chel":"Poison","Col":"Established","Dan":"Seductive","Dhaun":"Infested","Din":"Berserk","Dip":"Baleful","Div":"Dream","Dosst":"Possessed","Draa":"Twofold","Dragh":"Void","Driz":"Relentless","Dro":"Living","Droc":"Arrogant","Duag":"Warded","Duk":"Vicious","Dur":"Cold","Elam":"Enduring","Elaug":"Magical","Elgg":"Fearful","Elk":"Chaos","Erag":"Strange","Erth":"Resolute","Fil":"Pale","Fyr":"Ardent","G'eld":"Ominous","Gare":"Ember","Gel":"Ambitious","Ghol":"Resourceful","Ghor":"Calm","Ghuan":"Accursed","Go":"Menacing","Golo":"Thricefold","Gul":"Spectral","Harl":"Inferior","Harn":"First","Has":"Strategic","Hatch":"Determined","Hong":"Fearless","Hor":"Strong","Hurz":"Faith","Ib":"Vile","Iim":"Spirited","Il":"Greedy","Ilin":"Obsessed","Ilph":"Emerald","Ilzt":"Mystical","Im":"Devoted","Ist":"Endless","Izil":"Intricate","Izz":"Hidden","Jaez":"Alluring","Jal":"Commanding","Jar":"Charmed","Jiv":"Singing","Kalan":"Skillful","Kar":"Teeming","Kel":"Legendary","Khal":"Trusted","Khaz":"Awakened","Kin":"Careful","Kol":"Hurt","Kren":"Young","Kron":"Sick","Kul":"Strict","Les":"Imperious","Llt":"Steel","Lu":"Exiled","Lyme":"Bright","Mag":"Lone","Malag":"Mysterious","Mas":"Beautiful","Menzo":"Guided","Mer":"Doomed","Micar":"Lost","Moc":"Highest","Mourn":"Mythical","Nad":"Cunning","Nal":"Brutal","Neer":"Persistent","Nil":"Howling","Nym":"Skeletal","Ob":"Silver","Ogg":"Distrusted","Omar":"Marked","Orgoll":"Dread","Orm":"Insightful","Parz":"Amusing","Phal":"Scarred","Phar":"Treacherous","Pho":"Impetuous","Phyx":"Blessed","Plynn":"Thieving","Qual":"Rising","Quel":"Brave","Quev":"Trusted","Quii":"Scheming","Quil":"Hated","Ran":"Second","Rel":"Resilient","Relon":"Cutting","Rhyl":"Moon","Rik":"Spellbound","Riz":"Ashen","Ryl":"Foretold","Ryld":"Baseborn","Rylu":"Patient","Sarn":"Dangerous","Sav":"Mischievous","Sca":"Superior","Selds":"Oathbound","Shar":"Dagger","Shav":"Envious","Shazu":"Half-Breed","Shynt":"Invisible","Sol":"Deft","Sorn":"Enchanted","Spir":"Learned","Ssz":"Silent","Suss":"Light","Szin":"Pleasured","Szor":"Amber","Talen":"Fickle","Tar":"Gullible","Tath":"Midnight","Taz":"Bat","Teb":"Sharp","Telan":"Enticing","Thal":"Diplomatic","Thos":"Bound","Tin":"Steadfast","Tluth":"Fire","Tsab":"Grave","Uhls":"Treasured","Ult":"Victorious","Url":"Blooded","Val":"Dark","Vel":"Invisible","Vest":"Intoxicated","Vesz":"Blood","Vhae":"Masked","Vic":"Profound","Vid":"Persuasive","Vize":"Student","Vorn":"Honored","Vuz":"Forgotten","Wehl":"Deep","Welv":"Grand","Wod":"Bold","Wruz":"Trivial","Xal":"Possible","Xelu":"Desired","Xorl":"Majestic","Xun":"Demon","Yaz":"Web","Yorn":"Calamitous","Yv":"Twin","Yyrr":"New","Zakn":"Shadow","Zau":"Scorned","Zed":"Favored","Zek":"Mighty","Zsz":"Respected"}
         },
         middle: {
             syllables: ["a","aeth","agh","al","as","aun","ban","buk","d","daal","daer","dan","dar","dax","diin","diirn","dith","dor","dorl","drin","dyn","e","eal","ente","erd","eth","eyl","fein","fryn","gloth","gos","guin","hin","hrae","hrys","i","in","inn","jss","kah","kyn","lath","lin","lorn","lust","lyn","mis","mur'ss","mus","muth","myr","nar","net","nin","nozz","o","oj","olg","olin","omph","or","orl","oyn","phul","raen","rak","ral","rar","raum","ree","rigg","ril","rimm","rimo","rith","rorn","roth","ryn","sargh","set","sul","syn","tak","tan","tar","tel","thae","thaer","thel","then","thigg","ton","tos","tran","trin","tyrr","u","ven","vil","vyll","vyr","xund","y","yl","yln","yrd","yrr","zaer","zar","zen","ziir","zt","zyl","zyr"],
@@ -29,8 +29,8 @@ var drow = {
     },
     unisex : {
         prefix: {
-            syllables: ["Bauth","Cel","Chel","Dan","Dhaun","Dosst","Draa","Dro","G'eld","Ghuan","Hor","Iim","Il","Ilin","Ilph","Izil","Kar","Khal","Kol","Kul","Micar","Nal","Neer","Ob","Ogg","Pha","Pho","Plynn","Quel","Quii","Rel","Ryl","Sav","Shazu","Shynt","Suss","Telan ","Thal","Tin","Vel","Vest","Vic","Xelu","Xun","Yv"],
-            meanings: {"Bauth":"Way","Cel":"Ember","Chel":"Poison","Dan":"Seductive","Dhaun":"Infested","Dosst":"Possessed","Draa":"Twofold","Dro":"Living","G'eld":"Ominous","Ghuan":"Accursed","Hor":"Strong","Iim":"Spirited","Il":"Greedy","Ilin":"Obsessed","Ilph":"Emerald","Izil":"Intricate","Kar":"Teeming","Khal":"Trusted","Kol":"Hurt","Kul":"Strict","Micar":"Lost","Nal":"Brutal","Neer":"Persistent","Ob":"Silver","Ogg":"Distrusted","Pha":"Eloquent","Pho":"Impetuous","Plynn":"Thieving","Quel":"Brave","Quii":"Scheming","Rel":"Resilient","Ryl":"Foretold","Sav":"Mischievous","Shazu":"Half-Breed","Shynt":"Invisible","Suss":"Light","Telan ":"Enticing","Thal":"Diplomatic","Tin":"Steadfast","Vel":"Invisible","Vest":"Intoxicated","Vic":"Profound","Xelu":"Desired","Xun":"Demon","Yv":"Twin"}
+            syllables: ["Bauth","Cel","Chel","Dan","Dhaun","Dosst","Draa","Dro","G'eld","Ghuan","Hor","Iim","Il","Ilin","Ilph","Izil","Kar","Khal","Kol","Kul","Micar","Nal","Neer","Ob","Ogg","Pha","Pho","Plynn","Quel","Quii","Rel","Ryl","Sav","Shazu","Shynt","Suss","Telan","Thal","Tin","Vel","Vest","Vic","Xelu","Xun","Yv"],
+            meanings: {"Bauth":"Way","Cel":"Ember","Chel":"Poison","Dan":"Seductive","Dhaun":"Infested","Dosst":"Possessed","Draa":"Twofold","Dro":"Living","G'eld":"Ominous","Ghuan":"Accursed","Hor":"Strong","Iim":"Spirited","Il":"Greedy","Ilin":"Obsessed","Ilph":"Emerald","Izil":"Intricate","Kar":"Teeming","Khal":"Trusted","Kol":"Hurt","Kul":"Strict","Micar":"Lost","Nal":"Brutal","Neer":"Persistent","Ob":"Silver","Ogg":"Distrusted","Pha":"Eloquent","Pho":"Impetuous","Plynn":"Thieving","Quel":"Brave","Quii":"Scheming","Rel":"Resilient","Ryl":"Foretold","Sav":"Mischievous","Shazu":"Half-Breed","Shynt":"Invisible","Suss":"Light","Telan":"Enticing","Thal":"Diplomatic","Tin":"Steadfast","Vel":"Invisible","Vest":"Intoxicated","Vic":"Profound","Xelu":"Desired","Xun":"Demon","Yv":"Twin"}
         },
         middle: {
             syllables: ["a","ace","ae","aer","aeth","agh","al","as","aun","ban","bryn","buk","d","da","daal","daer","dan","dar","dax","dia","diin","diirn","dith","dor","dorl","dra","draun","dril","drin","dryn","dyn","e","eal","ente","erd","ess","eth","eyl","fein","ffyn","fryn","gloth","gos","guin","hin","hrae","hrys","hyrr","i","ice","in","inn","jra","jss","kah","kyn","lath","lay","less","lin","linth","lith","lorn","loth","lur","lust","lyn","lyss","mice","mis","mur'ss","mus","muth","myr","na","nar","nath","nei","net","nin","niss","nozz","o","oj","olg","olin","omph","or","orl","oyn","phul","ra","rae","raen","rak","ral","rar","raum","raun","ree","ress","reth","rigg","ril","rimm","rimo","rin","rith","rorn","roth","ryn","ryne","sargh","set","shin","sine","stin","sul","syn","tak","tan","tar","tel","thae","thaer","thel","then","thigg","thiir","thrae","thrine","ton","tos","tran","tree","trin","tyrr","u","ue","va","ve","ven","vil","vin","vyll","vyr","wae","wyss","xae","xund","y","yl","yln","yrd","yrr","za","zaer","zar","zen","zheel","ziir","zild","zt","zyl","zyne","zyr"],
@@ -57,6 +57,8 @@ var drow = {
     }
 };
 
+// Finnish settings
+
 var male_names = {
     prefixes : [["Aa","Ee","Ja","Ju"],["A","An","Ar","E","I","Jo","Ka","Mi","O","Pe","Sa","Ta","Vil"],["Aar","Al","As","Au","El","En","Er","Ha","He","Hei","Hen","Ii","Il","Is","Jaa","Jar","Jas","Je","Ji","Joo","Jou","Jy","Kaa","Kai","Kar","Kau","Ki","La","Le","Ma","Mar","Mau","Me","Mii","Ni","Nii","Or","Os","Pa","Ra","Rai","Re","Rei","Ri","Ro","San","Se","Si","Te","Tei","Ti","To","Toi","Tuu","U","Ur","Va","Val","Ve","Vee","Vei","Vel","Ver","Vi","Väi"],["Aal","Aap","Ah","Ai","Ak","Ars","At","Eet","Ei","Em","Ens","Es","Hai","Hal","Ham","Han","Hans","Har","Hau","Hel","Her","Hi","Hil","Hir","His","Hu","Hui","Huo","Huu","Iis","In","Jaar","Jah","Jai","Jal","Jam","Jan","Jau","Jee","Jel","Jer","Jes","Jir","Jis","Jon","Jor","Jos","Jout","Juk","Jur","Jus","Juu","Jyr","Jys","Kaap","Kaar","Kais","Kait","Kal","Kas","Ke","Kei","Kel","Ker","Kim","Kir","Kiu","Ko","Koi","Kol","Kon","Kons","Kor","Kos","Kou","Kris","Ku","Kuis","Kul","Kun","Kus","Kuu","Ky","Kyös","Kö","Lah","Lai","Lau","Lee","Lei","Li","Lie","Loi","Lu","Luu","Ly","Mah","Mai","Mak","Mal","Mert","Mie","Mies","Mih","Miit","Mik","Mil","Mir","Mis","Mit","Mo","Mor","Mos","Mu","Muis","My","Myrs","Na","Naa","Nan","Ne","Nee","Nes","Nie","Nik","No","Noo","Nu","Nuu","Nyr","Nyy","Oh","Oi","Ol","Ot","Ou","Paa","Par","Pat","Pau","Pee","Peet","Pei","Peit","Pen","Per","Pet","Pi","Pie","Pir","Po","Poh","Poi","Pon","Pou","Pu","Py","Päi","Pär","Ran","Ras","Rau","Ree","Reis","Ren","Rie","Rii","Ris","Roi","Roo","Rou","Ru","Rus","Ruu","Ry","Saa","Saar","Sam","Samp","Sar","Sas","Sau","See","Sei","Sel","Sih","Sii","Sil","Sim","Sip","So","Soi","Soin","Sol","Su","Sul","Suo","Sy","Syk","Syl","Sä","Taa","Tah","Tai","Tais","Tal","Tar","Tau","Tee","Tel","Tem","Ten","Ter","Teu","Tii","Tim","Tin","Tom","Tors","Tou","Tu","Tuh","Tuis","Tuo","Tur","Tyrs","Täh","Ul","Un","Uns","Uo","Us","Uu","Uur","Vaa","Vai","Var","Veer","Vek","Ven","Ves","Vie","Vih","Vii","Vik","Vin","Vins","Vir","Voi","Vol","Vä","Väis","Y","Yr","Ä","Ää"]],
     middles : [["ka","la","le","li","ma","me","pe","pi","ri","ta","te","ti","va","ve"],["e","ha","han","he","hel","hi","hu","ja","jo","jä","kan","ki","kka","kke","kki","kku","ko","kus","lek","len","ler","lle","ller","mi","mie","mme","mmi","mmin","mo","mu","mun","möi","na","ne","ner","nes","ni","nin","nna","no","nä","o","pa","per","ppa","pu","ras","re","rin","rit","rre","rus","sa","san","se","sel","sen","si","sse","ter","to","tte","tti","ttii","ttu","tty","tu","var","ver","ves","vi","von","vä"]],
@@ -81,76 +83,99 @@ var max_consonants = 3;
 
 var character_types = { vowel : "[aeiouyäö]", consonant : "[bcdfghjklmnpqrstvwxz]" };
 
-var banned_clusters = {
-    '(?<=[qwrtpsdfghjklzxcbnmv]*)[aä]{1,2}$' : "^[eiouyö]?[aä]",
-    '(?<=[qwrtpsdfghjklzxcbnmv]*)[e]{1,2}$' : "^[aäiouyö]?[e]",
-    '(?<=[qwrtpsdfghjklzxcbnmv]*)[i]{1,2}$' : "^[aäeouyö]?[i]",
-    '(?<=[qwrtpsdfghjklzxcbnmv]*)[oö]{1,2}$' : "^[aäeuyi]?[oö]",
-    '(?<=[qwrtpsdfghjklzxcbnmv]*)[uy]{1,2}$' : "^[aäeoöi]?[uy]",
-    '[qwrtpsdfghjklzxcbnmv]$' : "^ll|^nn|^rr|^mm",
-    'nn$|ss$|ll$|mm$|pp$|tt$' : "^[bcdfghjklmnpqrstvwxz]",
-    '[qwtpsdfghjkzxcbnmv]$' : "^kk",
-    '[qwrtpsdfghjkzxcbnv]$' : "^pp",
-    '[qwtpsdfghjklzxcbmv]$' : "^ss",
-    '[qwtpsdfghjkzxcbmv]$' : "^tt",
-    'r[qwrtpsdfghjklzxcbnmv]$' : "^r",
-    't[qwrtpsdfghjklzxcbnmv]$' : "^t",
-    'p[qwrtpsdfghjklzxcbnmv]$' : "^p",
-    's[qwrtpsdfghjklzxcbnmv]$' : "^s",
-    'd[qwrtpsdfghjklzxcbnmv]$' : "^d",
-    'h[qwrtpsdfghjklzxcbnmv]$' : "^h",
-    'j[qwrtpsdfghjklzxcbnmv]$' : "^j",
-    'k[qwrtpsdfghjklzxcbnmv]$' : "^k",
-    'l[qwrtpsdfghjklzxcbnmv]$' : "^l",
-    'n[qwrtpsdfghjklzxcbnmv]$' : "^n",
-    'm[qwrtpsdfghjklzxcbnmv]$' : "^m",
-    'v[qwrtpsdfghjklzxcbnmv]$' : "^v",
-    'h$' : "^[rpsdghlnm]",
-    'j$' : "^[rtpsdghjklnmv]",
-    'k$' : "^[pdghjnmvk]",
-    'l$' : "^[rsdgln]",
-    'm$' : "^[rtdghklnvm]",
-    'n$' : "^[pglmn]",
-    'p$' : "^[tdghjklnmvp]",
-    'r$' : "^[dgr]",
-    's$' : "^[rdghjns]",
-    't$' : "^[pdghknmt]",
-    'v$' : "^[rtpsdghjklnmv]",
-    'a$' : "^[oyöa]",
-    'e$' : "^[öye]",
-    'i$' : "^[äyi]",
-    'o$' : "^[äöyo]",
-    'u$' : "^[aäöyu]",
-    'y$' : "^[aäuy]",
-    'ä$' : "^[oöä]",
-    'ö$' : "^[aäeö]",
-    'a[eiouyäö]$|e[aiouyäö]$|i[eaouyäö]$|o[eaiuyäö]$|u[eaoiyäö]$|y[eaouiäö]$|ä[eaouyiö]$|ö[eaouyäi]$' : "^[aeiouyäö]"
-};
+var banned_clusters = [
+    { nameHas : '(?<=[qwrtpsdfghjklzxcbnmv]*)[aä]{1,2}$', ban : "^[eiouyö]?[aä]" },
+    { nameHas : '(?<=[qwrtpsdfghjklzxcbnmv]*)[e]{1,2}$', ban : "^[aäiouyö]?[e]" },
+    { nameHas : '(?<=[qwrtpsdfghjklzxcbnmv]*)[i]{1,2}$', ban : "^[aäeouyö]?[i]" },
+    { nameHas : '(?<=[qwrtpsdfghjklzxcbnmv]*)[oö]{1,2}$', ban : "^[aäeuyi]?[oö]" },
+    { nameHas : '(?<=[qwrtpsdfghjklzxcbnmv]*)[uy]{1,2}$', ban : "^[aäeoöi]?[uy]" },
+    { nameHas : '[qwrtpsdfghjklzxcbnmv]$', ban : "^ll|^nn|^rr|^mm" },
+    { nameHas : 'nn$|ss$|ll$|mm$|pp$|tt$', ban : "^[bcdfghjklmnpqrstvwxz]" },
+    { nameHas : '[qwtpsdfghjkzxcbnmv]$', ban : "^kk" },
+    { nameHas : '[qwrtpsdfghjkzxcbnv]$', ban : "^pp" },
+    { nameHas : '[qwtpsdfghjklzxcbmv]$', ban : "^ss" },
+    { nameHas : '[qwtpsdfghjkzxcbmv]$', ban : "^tt" },
+    { nameHas : 'r[qwrtpsdfghjklzxcbnmv]$', ban : "^r" },
+    { nameHas : 't[qwrtpsdfghjklzxcbnmv]$', ban : "^t" },
+    { nameHas : 'p[qwrtpsdfghjklzxcbnmv]$', ban : "^p" },
+    { nameHas : 's[qwrtpsdfghjklzxcbnmv]$', ban : "^s" },
+    { nameHas : 'd[qwrtpsdfghjklzxcbnmv]$', ban : "^d" },
+    { nameHas : 'h[qwrtpsdfghjklzxcbnmv]$', ban : "^h" },
+    { nameHas : 'j[qwrtpsdfghjklzxcbnmv]$', ban : "^j" },
+    { nameHas : 'k[qwrtpsdfghjklzxcbnmv]$', ban : "^k" },
+    { nameHas : 'l[qwrtpsdfghjklzxcbnmv]$', ban : "^l" },
+    { nameHas : 'n[qwrtpsdfghjklzxcbnmv]$', ban : "^n" },
+    { nameHas : 'm[qwrtpsdfghjklzxcbnmv]$', ban : "^m" },
+    { nameHas : 'v[qwrtpsdfghjklzxcbnmv]$', ban : "^v" },
+    { nameHas : 'h$', ban : "^[rpsdghlnm]" },
+    { nameHas : 'j$', ban : "^[rtpsdghjklnmv]" },
+    { nameHas : 'k$', ban : "^[pdghjnmvk]" },
+    { nameHas : 'l$', ban : "^[rsdgln]" },
+    { nameHas : 'm$', ban : "^[rtdghklnvm]" },
+    { nameHas : 'n$', ban : "^[pglmn]" },
+    { nameHas : 'p$', ban : "^[tdghjklnmvp]" },
+    { nameHas : 'r$', ban : "^[dgr]" },
+    { nameHas : 's$', ban : "^[rdghjns]" },
+    { nameHas : 't$', ban : "^[pdghknmt]" },
+    { nameHas : 'v$', ban : "^[rtpsdghjklnmv]" },
+    { nameHas : 'a$', ban : "^[oyöa]" },
+    { nameHas : 'e$', ban : "^[öye]" },
+    { nameHas : 'i$', ban : "^[äyi]" },
+    { nameHas : 'o$', ban : "^[äöyo]" },
+    { nameHas : 'u$', ban : "^[aäöyu]" },
+    { nameHas : 'y$', ban : "^[aäuy]" },
+    { nameHas : 'ä$', ban : "^[oöä]" },
+    { nameHas : 'ö$', ban : "^[aäeö]" },
+    { nameHas : 'a[eiouyäö]$|e[aiouyäö]$|i[eaouyäö]$|o[eaiuyäö]$|u[eaoiyäö]$|y[eaouiäö]$|ä[eaouyiö]$|ö[eaouyäi]$', ban : "^[aeiouyäö]" }
+];
+
+var replace_character = [
+    { nameHas : '[äöy]', replace: { 'a' : 'ä', 'o' : 'ö', 'u' : 'y', 'A' : 'Ä', 'O' : 'Ö', 'U' : 'Y' } }
+];
+
+// Model
 
 var banHammer = [
-    { nameHas : "", ban : "", useOnly: [] }
+    { nameHas : "", ban : "" }
 ];
 
 var replacer = [
-    { nameHas: "", replace: {}, useOnly: []}
+    { nameHas: "", replace: {}}
 ];
 
 var punctuation = [
-    { nameHas : "", ifWith: "", addBetween : "", useOnly: [] }
+    { nameHas : "", ifWith: "", addBetween : "" }
 ];
 
-var replace_character = {
-    '[äöy]' : { 'a' : 'ä', 'o' : 'ö', 'u' : 'y', 'A' : 'Ä', 'O' : 'Ö', 'U' : 'Y' }
-};
+// Drow settings
+var house_preposition = "of the House ";
 
+var drowBanned = [
+    { nameHas : "[v]$", ban : "^[qwrtpsdfghjklzxcvbnm]" }, 
+    { nameHas : "[qwrtpsdfghjklzxcvbnm]$", ban : "^[j]" }, 
+    { nameHas : "rr$", ban : "^r" }
+];
 
-const drow_names = new nameCrafter({bannedClusters : {'[v]$' : '^[qwrtpsdfghjklzxcvbnm]', '[qwrtpsdfghjklzxcvbnm]$' : '^[j]', 'rr$' : '^r'}, punctuation: {'a$' : { '^a' : "'" }, 'e$' : { '^e' : "'" }, 'i$' : { '^i' : "'" }, 'u$' : { '^u' : "'" }, 'o$' : { '^o' : "'" }, 'y$' : { '^y' : "'" }, 'ss$' : { '^s' : "'" }, 'rr$' : { '^r' : "'" }, 'gg$' : { '^g' : "'" }, 'nn$' : { '^n' : "'", '^m' : "'" }, 'mm$' : { '^n' : "'", '^m' : "'" } } } );
+var drowPunctuate = [ 
+    { nameHas : "a$", ifWith: "^a", addBetween : "'" }, 
+    { nameHas : "e$", ifWith: "^e", addBetween : "'" }, 
+    { nameHas : "i$", ifWith: "^i", addBetween : "'" }, 
+    { nameHas : "u$", ifWith: "^u", addBetween : "'" }, 
+    { nameHas : "o$'", ifWith: "^o", addBetween : "'" }, 
+    { nameHas : "y$", ifWith: "^y", addBetween : "'" }, 
+    { nameHas : "ss$", ifWith: "^s", addBetween : "'" }, 
+    { nameHas : "rr$", ifWith: "^r", addBetween : "'" }, 
+    { nameHas : "gg$", ifWith: "^g", addBetween : "'" }, 
+    { nameHas : "nn$|$mm", ifWith: "^n|^m", addBetween : "'" }
+];
+
+const drow_names = new nameCrafter({bannedClusters : drowBanned, punctuation: drowPunctuate } );
     drow_names.setToLibrary("female", drow.female.prefix.syllables, drow.female.middle.syllables, drow.female.suffix.syllables, { lengthRates : [1,50,48,1], longSyllable : {threshold : 3, maximums : [1,2,1,1]} });
     drow_names.setToLibrary("male", drow.male.prefix.syllables, drow.male.middle.syllables, drow.male.suffix.syllables, { lengthRates : [5,50,44,1], longSyllable : {threshold : 3, maximums : [1,2,1,1]} });
     drow_names.setToLibrary("unisex", drow.unisex.prefix.syllables, drow.unisex.middle.syllables, drow.unisex.suffix.syllables, { lengthRates : [10,80,10], longSyllable : {threshold : 3, maximums : [1,2,1]} });
-    drow_names.setToLibrary("house", drow.house.prefix.syllables, drow.house.middle.syllables, drow.house.suffix.syllables, { lengthRates : [0,99,1], preposition: "of the House ", longSyllable : {threshold : 3, maximums : [1,2,1]} });
+    drow_names.setToLibrary("house", drow.house.prefix.syllables, drow.house.middle.syllables, drow.house.suffix.syllables, { lengthRates : [0,99,1], preposition: house_preposition, longSyllable : {threshold : 3, maximums : [1,2,1]} });
     
-const finnish_names = new nameCrafter({vowels : "[aeiouyäö]", maxVowels: 3, bannedClusters : banned_clusters, replaceables : replace_character});
+const finnish_names = new nameCrafter({vowels : "[aeiouyäö]", maxVowels: 3, bannedClusters : banned_clusters, replacements : replace_character});
     finnish_names.setToLibrary("male_names", male_names.prefixes, male_names.middles, male_names.suffixes, {lengthRates : [5,557,104,6,1], longSyllable : { threshold : 3, maximums : [1,2,2,2,1] } });
     finnish_names.setToLibrary("female_names", female_names.prefixes, female_names.middles, female_names.suffixes, {lengthRates : [5,818,268,12,1], longSyllable : { threshold : 3, maximums : [1,2,2,2,1] }});
     finnish_names.setToLibrary("last_names", last_names.prefixes, last_names.middles, last_names.suffixes, {lengthRates : [0,132,282,2,1], longSyllable : { threshold : 3, maximums : [0,2,2,2,2] }});
@@ -192,8 +217,8 @@ function craftDrowNames(set_name) {
     
     for (let i = 0; i < new_drow_names.length; i++) {
         
-        let name = "";
-        let meaning = "";
+        let name = [];
+        let meaning = [];
         let full_name = new_drow_names[i];
         let listing;
         
@@ -201,42 +226,47 @@ function craftDrowNames(set_name) {
             
             if (n < full_name.length - 1) {
                 listing = current_list;
+                meaning.push(" ");
             } else { 
                 listing = drow.house;
+                meaning.push(",");
             }
-            
-            if (n == 0) {
-                meaning += "'";
-            } else {
-                name = name.trim() + " ";
-            }
-            
-            name += full_name[n].name;
             
             let parts = full_name[n].originalSyllables;
             let meaning_list;
+            let name_wrapped = "";
+            let pre = false;
+            
             
             for (let s = 0; s < parts.length; s++) {
                 
-                if (s == 0) {
-                    meaning_list = listing.prefix.meanings;
-                } else {
-                    meaning +=  " ";
-                    meaning_list = s == parts.length-1 ? listing.suffix.meanings : listing.middle.meanings;
+                if (parts[s]) {
+                    name_wrapped += parts[s] == house_preposition || parts[s] == "'" ? parts[s] : "<span class='name_part'>" + parts[s] + "</span>";
+
+                    if (s == 0 || pre) {
+                        meaning_list = listing.prefix.meanings;
+                        pre = false;
+                    } else {
+                        meaning_list = s == parts.length-1 ? listing.suffix.meanings : listing.middle.meanings;
+                    }
+                    
+                    if (meaning_list[parts[s]]) {
+                        meaning.push("<span class='name_part'>" + meaning_list[parts[s]] + "</span>");
+                    } else if (parts[s] == house_preposition) {
+                        meaning.push(house_preposition + ":");
+                        pre = true;
+                        
+                    } else if (parts[s] != "'") {
+                        meaning.push("<span class='name_part'>-</span>");
+                    }
                 }
-                
-                meaning += meaning_list[parts[s]];
             }
             
-            if (n < full_name.length - 1) {
-                meaning = meaning.trim() + "' - '";
-            } else {
-                
-                meaning = meaning.trim() + "'";
-            }
+            name.push(name_wrapped);
+            
         }
         
-        name = "<p><b>" + name + "</b><br/><small>" + meaning + "</small></p>";
+        name = "<p class='name_data'><b class='fullname'>" + name.join(" ").trim() + "</b><br/><small class='meaning'>'" + meaning.join(" ").trim() + "'</small></p>";
         
         name_list.push(name);
            

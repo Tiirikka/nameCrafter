@@ -2,7 +2,12 @@ const demo_prefix = ["Mion","Kel","Ke","A","Avae","Syn","Ad","Ay","Ca","Cer","Ci
 const demo_middle = ["ith","ry","lat","re", "ve", "vin","ral","lyn","li","moi","ly","ren","la","men","le","na","lad"];
 const demo_suffix = ["zair","ir","mis","har","ess","dra", "ric", "len", "ral", "mon", "yra","lon","lyn","ean","ren","ra","or","ias","vin","rith","ril","reth","rion","her", "ith", "lyn", "as"];
 
-const demo = new nameCrafter({maxConsonants: 2, bannedClusters : { "n$" : "^m", "c$" : "^[qwrtplkjhgfdzxcvbnm]"}});
+const ban = [
+    { nameHas: "n$", ban : "^m" }, 
+    { nameHas: "c$", ban : "^[qwrtplkjhgfdzxcvbnm]" }
+];
+
+const demo = new nameCrafter({ maxConsonants: 2, bannedClusters : ban });
 
 demo.setToLibrary("demo_names", demo_prefix, demo_middle, demo_suffix, { lengthRates : [0,6,4] });
 

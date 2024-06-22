@@ -9,13 +9,13 @@ class nameCrafter {
             consonants : "[bcdfghjklmnpqrstvwxz]",
             maxVowels : 2,
             maxConsonants : 3,
-            bannedClusters : {},
-            replaceables : {},
+            bannedClusters : [],
+            replacements : [],
             blockRepeats : [
                 { min: 2, max: 2, allowed: 1},
                 { min: 3, max: null, allowed: 0}
             ],
-            punctuation: {},
+            punctuation: [],
             matchModifier : "gi",
             replaceModifier: "g" 
         };
@@ -188,8 +188,8 @@ class nameCrafter {
         return originalSyllableGroup.filter((currentSyllable) => this.getStartCluster(currentSyllable).vowels <= max.vowels && this.getStartCluster(currentSyllable).consonants <= max.consonants);
     }
     
-    filterOffBanned(originalSyllableGroup, nameSoFar, situation, banned) {
-        return originalSyllableGroup.filter((currentSyllable) => !(this.matchPattern(nameSoFar, situation) && this.matchPattern(currentSyllable, banned)));
+    filterOffBanned(originalSyllableGroup, nameSoFar, nameHas, ban) {
+        return originalSyllableGroup.filter((currentSyllable) => !(this.matchPattern(nameSoFar, nameHas) && this.matchPattern(currentSyllable, ban)));
     }
     
     filterOffLongSyllables(originalSyllableGroup, longSyllableThreshold) {
@@ -239,9 +239,10 @@ class nameCrafter {
             if ( round > 0) {
                 currentSyllableGroup = this.filterByClusterSizes(currentSyllableGroup, max);
                 
-                if (Object.keys(this.libraryOptions.bannedClusters).length) {
-                    for (let [situation, banned] of Object.entries(this.libraryOptions.bannedClusters)) {
-                        currentSyllableGroup = this.filterOffBanned(currentSyllableGroup, nameSoFar, situation, banned);
+                if (this.libraryOptions.bannedClusters.length) {
+                    var clusters = this.libraryOptions.bannedClusters;
+                    for (let b = 0; b < clusters.length; b++) {
+                        currentSyllableGroup = this.filterOffBanned(currentSyllableGroup, nameSoFar, clusters[b].nameHas, clusters[b].ban);
                     }
                 }
             
@@ -288,7 +289,11 @@ class nameCrafter {
                 maximums : null,
                 setLengths : null,
                 forceLenghts : false
-            }
+            },
+            bannedClusters: [],
+            replacements : [],
+            blockRepeats : [],
+            punctuation: []
             
         };
         
@@ -302,6 +307,11 @@ class nameCrafter {
             "suffix" : { syllables : suffixes, rates : this.setSyllableRates(this.setSyllableRates(suffixes))},
             "options" : { ...this.defaultSetOptions, ...options }
         };
+        
+        this.library[name.toString()].options.bannedClusters.concat(this.libraryOptions.bannedClusters);
+        this.library[name.toString()].options.replacements.concat(this.libraryOptions.replacements);
+        this.library[name.toString()].options.punctuation.concat(this.libraryOptions.punctuation);
+        this.library[name.toString()].options.blockRepeats.concat(this.libraryOptions.blockRepeats);
         
         if (this.debug) {
             console.log("nameCrafter: Syllable set " + name.toString() + " setup completed.");
@@ -403,13 +413,13 @@ class nameCrafter {
                 console.log("nameCrafter: One syllable skipped, there was no fitting syllables in the current circumstance.");
             }
             
-            if (Object.keys(this.libraryOptions.punctuation).length) {
-                for (let [key, cases] of Object.entries(this.libraryOptions.punctuation)) {
-                    if (this.matchPattern(nameData.name, key)) {
-                        for (let [which, what] of Object.entries(cases)) {
-                            if (this.matchPattern(syllable, which)) {
-                                nameData.name += what;
-                            }
+            if (this.libraryOptions.punctuation.length) {
+                for (let p = 0; p < this.libraryOptions.punctuation.length; p++) {
+                    let punctuation = this.libraryOptions.punctuation[p];
+                    if (this.matchPattern(nameData.name, punctuation.nameHas)) {
+                        if (this.matchPattern(syllable, punctuation.ifWith)) {
+                            nameData.name += punctuation.addBetween;
+                            nameData.originalSyllables.push(punctuation.addBetween);
                         }
                     }
                 }
@@ -436,16 +446,16 @@ class nameCrafter {
             }
         }
         
-        if (Object.keys(this.libraryOptions.replaceables).length) {
+        if (this.libraryOptions.replacements.length) {
+            let replacements = this.libraryOptions.replacements;
             
             if (this.debug) {
                 console.log("nameCrafter: checking name for replacables.");
             }
         
-            for (let [key, cases] of Object.entries(this.libraryOptions.replaceables)) {
-
-                if (this.matchPattern(nameData.name, key)) {
-                    for (let [which, what] of Object.entries(cases)) {
+            for (let r = 0; r < replacements.length; r++) {
+                if (this.matchPattern(nameData.name, replacements[r].nameHas)) {
+                    for (let [which, what] of Object.entries(replacements[r].replace)) {
                         nameData.name = nameData.name.replace(new RegExp(which, this.libraryOptions.replaceModifier), what);
                     }
                 }
@@ -457,6 +467,7 @@ class nameCrafter {
         
         
         if (preposition) {
+            nameData.originalSyllables.unshift(preposition);
             nameData.name = preposition + nameData.name;
             if (this.debug) {
                 console.log("nameCrafter: Added preposition.");
@@ -464,6 +475,7 @@ class nameCrafter {
         }
         
         if (postposition) {
+            nameData.originalSyllables.push(postposition);
             nameData.name += postposition;
             if (this.debug) {
                 console.log("nameCrafter: Added postposition.");
